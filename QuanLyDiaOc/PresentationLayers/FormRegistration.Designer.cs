@@ -43,9 +43,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
-            this.txtXoa = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
             this.txtSua = new System.Windows.Forms.Button();
             this.gbthongtinkhachhang = new System.Windows.Forms.GroupBox();
+            this.lblNamSinh = new System.Windows.Forms.Label();
+            this.rbNu = new System.Windows.Forms.RadioButton();
+            this.rbNam = new System.Windows.Forms.RadioButton();
             this.txtNamSinh = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -151,8 +154,6 @@
             this.lblKH = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.rbNam = new System.Windows.Forms.RadioButton();
-            this.rbNu = new System.Windows.Forms.RadioButton();
             this.tabCtrlPhieuDangKy.SuspendLayout();
             this.tabPageKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
@@ -193,7 +194,7 @@
             this.tabPageKhachHang.Controls.Add(this.panel1);
             this.tabPageKhachHang.Controls.Add(this.label1);
             this.tabPageKhachHang.Controls.Add(this.btnThem);
-            this.tabPageKhachHang.Controls.Add(this.txtXoa);
+            this.tabPageKhachHang.Controls.Add(this.btnXoa);
             this.tabPageKhachHang.Controls.Add(this.txtSua);
             this.tabPageKhachHang.Controls.Add(this.gbthongtinkhachhang);
             this.tabPageKhachHang.Location = new System.Drawing.Point(4, 22);
@@ -231,7 +232,7 @@
             this.MaKH.HeaderText = "Mã khách hàng";
             this.MaKH.Name = "MaKH";
             this.MaKH.ReadOnly = true;
-            this.MaKH.Width = 77;
+            this.MaKH.Width = 98;
             // 
             // TenKH
             // 
@@ -239,7 +240,7 @@
             this.TenKH.HeaderText = "Tên Khách hàng";
             this.TenKH.Name = "TenKH";
             this.TenKH.ReadOnly = true;
-            this.TenKH.Width = 81;
+            this.TenKH.Width = 103;
             // 
             // GioiTinh
             // 
@@ -271,7 +272,7 @@
             this.SDT.HeaderText = "Số điện thoại";
             this.SDT.Name = "SDT";
             this.SDT.ReadOnly = true;
-            this.SDT.Width = 67;
+            this.SDT.Width = 87;
             // 
             // Email
             // 
@@ -327,16 +328,16 @@
             this.btnThem.UseVisualStyleBackColor = true;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // txtXoa
+            // btnXoa
             // 
-            this.txtXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtXoa.Location = new System.Drawing.Point(125, 367);
-            this.txtXoa.Name = "txtXoa";
-            this.txtXoa.Size = new System.Drawing.Size(92, 28);
-            this.txtXoa.TabIndex = 6;
-            this.txtXoa.Text = "Xóa";
-            this.txtXoa.UseVisualStyleBackColor = true;
-            this.txtXoa.Click += new System.EventHandler(this.txtXoa_Click);
+            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnXoa.Location = new System.Drawing.Point(125, 367);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Size = new System.Drawing.Size(92, 28);
+            this.btnXoa.TabIndex = 6;
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // txtSua
             // 
@@ -352,6 +353,7 @@
             // gbthongtinkhachhang
             // 
             this.gbthongtinkhachhang.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.gbthongtinkhachhang.Controls.Add(this.lblNamSinh);
             this.gbthongtinkhachhang.Controls.Add(this.rbNu);
             this.gbthongtinkhachhang.Controls.Add(this.rbNam);
             this.gbthongtinkhachhang.Controls.Add(this.txtNamSinh);
@@ -378,12 +380,44 @@
             this.gbthongtinkhachhang.TabStop = false;
             this.gbthongtinkhachhang.Text = "Thông tin cá nhân";
             // 
+            // lblNamSinh
+            // 
+            this.lblNamSinh.AutoSize = true;
+            this.lblNamSinh.ForeColor = System.Drawing.Color.Red;
+            this.lblNamSinh.Location = new System.Drawing.Point(9, 154);
+            this.lblNamSinh.Name = "lblNamSinh";
+            this.lblNamSinh.Size = new System.Drawing.Size(0, 18);
+            this.lblNamSinh.TabIndex = 20;
+            // 
+            // rbNu
+            // 
+            this.rbNu.AutoSize = true;
+            this.rbNu.Location = new System.Drawing.Point(166, 87);
+            this.rbNu.Name = "rbNu";
+            this.rbNu.Size = new System.Drawing.Size(45, 22);
+            this.rbNu.TabIndex = 18;
+            this.rbNu.TabStop = true;
+            this.rbNu.Text = "Nữ";
+            this.rbNu.UseVisualStyleBackColor = true;
+            // 
+            // rbNam
+            // 
+            this.rbNam.AutoSize = true;
+            this.rbNam.Location = new System.Drawing.Point(92, 87);
+            this.rbNam.Name = "rbNam";
+            this.rbNam.Size = new System.Drawing.Size(58, 22);
+            this.rbNam.TabIndex = 17;
+            this.rbNam.TabStop = true;
+            this.rbNam.Text = "Nam";
+            this.rbNam.UseVisualStyleBackColor = true;
+            // 
             // txtNamSinh
             // 
             this.txtNamSinh.Location = new System.Drawing.Point(92, 130);
             this.txtNamSinh.Name = "txtNamSinh";
             this.txtNamSinh.Size = new System.Drawing.Size(206, 24);
             this.txtNamSinh.TabIndex = 2;
+            this.txtNamSinh.TextChanged += new System.EventHandler(this.txtNamSinh_TextChanged);
             this.txtNamSinh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ChiNhapSo);
             // 
             // label18
@@ -408,7 +442,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.ForeColor = System.Drawing.Color.Red;
-            this.lblEmail.Location = new System.Drawing.Point(9, 232);
+            this.lblEmail.Location = new System.Drawing.Point(9, 301);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(0, 18);
             this.lblEmail.TabIndex = 12;
@@ -417,7 +451,7 @@
             // 
             this.lblDT.AutoSize = true;
             this.lblDT.ForeColor = System.Drawing.Color.Red;
-            this.lblDT.Location = new System.Drawing.Point(9, 176);
+            this.lblDT.Location = new System.Drawing.Point(9, 260);
             this.lblDT.Name = "lblDT";
             this.lblDT.Size = new System.Drawing.Size(0, 18);
             this.lblDT.TabIndex = 11;
@@ -426,7 +460,7 @@
             // 
             this.lblDiaChi.AutoSize = true;
             this.lblDiaChi.ForeColor = System.Drawing.Color.Red;
-            this.lblDiaChi.Location = new System.Drawing.Point(9, 121);
+            this.lblDiaChi.Location = new System.Drawing.Point(9, 211);
             this.lblDiaChi.Name = "lblDiaChi";
             this.lblDiaChi.Size = new System.Drawing.Size(0, 18);
             this.lblDiaChi.TabIndex = 10;
@@ -1474,28 +1508,6 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Phiếu đăng ký bán địa ốc";
             // 
-            // rbNam
-            // 
-            this.rbNam.AutoSize = true;
-            this.rbNam.Location = new System.Drawing.Point(92, 87);
-            this.rbNam.Name = "rbNam";
-            this.rbNam.Size = new System.Drawing.Size(58, 22);
-            this.rbNam.TabIndex = 17;
-            this.rbNam.TabStop = true;
-            this.rbNam.Text = "Nam";
-            this.rbNam.UseVisualStyleBackColor = true;
-            // 
-            // rbNu
-            // 
-            this.rbNu.AutoSize = true;
-            this.rbNu.Location = new System.Drawing.Point(166, 87);
-            this.rbNu.Name = "rbNu";
-            this.rbNu.Size = new System.Drawing.Size(45, 22);
-            this.rbNu.TabIndex = 18;
-            this.rbNu.TabStop = true;
-            this.rbNu.Text = "Nữ";
-            this.rbNu.UseVisualStyleBackColor = true;
-            // 
             // FormRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1559,7 +1571,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button txtXoa;
+        private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button txtSua;
         private System.Windows.Forms.GroupBox gbthongtinkhachhang;
         private System.Windows.Forms.TextBox txtEmail;
@@ -1674,5 +1686,6 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.RadioButton rbNu;
         private System.Windows.Forms.RadioButton rbNam;
+        private System.Windows.Forms.Label lblNamSinh;
     }
 }

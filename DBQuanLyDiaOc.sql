@@ -178,6 +178,13 @@ AS
 	INSERT INTO KhachHang VALUES(@ten, @gioitinh, @namsinh, @diachi, @sdt, @email)
 GO
 
+CREATE PROC sp_KhachHang_Xoa
+@ma varchar(10)
+
+AS
+	DELETE FROM KhachHang WHERE MaKH=@ma
+GO
+
 
 
 

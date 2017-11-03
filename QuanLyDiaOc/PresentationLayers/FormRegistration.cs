@@ -16,6 +16,9 @@ namespace QuanLyDiaOc.PresentationLayers
     public partial class FormRegistration : Form
     {
         private CustomerBLL customerBLL;
+        private string customerId;
+        private bool checkInsertCustommer = false;
+
         public FormRegistration()
         {
             InitializeComponent();
@@ -38,6 +41,7 @@ namespace QuanLyDiaOc.PresentationLayers
             dgvKhachHang.DataSource = customerBLL.GetListCustomer();
             txtDiaChi.Text = txtHoTen.Text = txtNamSinh.Text = txtDiaChi.Text = txtEmail.Text = "";
             rbNam.Checked = true;
+            customerId = "";
         }
 
         private bool KiemTraTab()
@@ -56,39 +60,70 @@ namespace QuanLyDiaOc.PresentationLayers
             return false;
         }
 
-        bool checkThemKH = false;
-        bool checkThemDO = false;
-
-
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string gioiTinh = "Nam";
-            if (rbNu.Checked)
-                gioiTinh = "Nữ";
-
-            CustomerDTO customerDTO = new CustomerDTO(txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
-
-            try
+            if (checkInsertCustommer)
             {
-                if (customerBLL.InsertCustomer(customerDTO))
+                string gioiTinh = "Nam";
+                if (rbNu.Checked)
+                    gioiTinh = "Nữ";
+
+                CustomerDTO customerDTO = new CustomerDTO(txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
+
+                try
                 {
-                    MessageBox.Show("Thêm nhân viên thành công");
-                    dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                    if (customerBLL.InsertCustomer(customerDTO))
+                    {
+                        MessageBox.Show("Thêm khách hàng thành công");
+                        dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm khách hàng thất bại");
+                    }
                 }
-                else
+                catch
                 {
-                    MessageBox.Show("Thêm nhân viên thất bại");
                 }
             }
-            catch
+            else
             {
+                MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
             }
         }
 
 
         private void dataGrid_KH_SelectionChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                int i = -1;
+                i = dgvKhachHang.CurrentRow.Index;
+                customerId = dgvKhachHang.Rows[i].Cells["MaKH"].Value.ToString();
+            }
+            catch { }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa thông tin khác hàng " + customerId, "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (customerBLL.DeleteCustomer(customerId))
+                {
+                    MessageBox.Show("Xóa khách hàng thành công");
+                    dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa khách hàng thất bại");
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
         }
 
         private void txtSua_Click(object sender, EventArgs e)
@@ -195,21 +230,100 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void txtHoTen_TextChanged(object sender, EventArgs e)
         {
-            
+            Regex reg = new Regex(@"^([\w.'-_?@áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ ]+)$");
+            if (!reg.IsMatch(txtHoTen.Text))
+            {
+                lblHoTen.Text = "Tên không hợp lệ";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                lblHoTen.Text = "";
+                checkInsertCustommer = true;
+            }
+            if (!KiemTraSoKyTuNhapVao(100, txtHoTen.Text))
+            {
+                lblHoTen.Text = "Chỉ được nhập tối đa 100 kí tự!";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblHoTen.Text = "";
+            }
+            if (txtHoTen.Text.Trim() == "")
+            {
+                lblHoTen.Text = "Vui lòng nhập họ tên";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblHoTen.Text = "";
+            }
         }
 
         private void txtDiaChi_TextChanged(object sender, EventArgs e)
         {
-            
+            if (txtDiaChi.Text.Trim() == "")
+            {
+                lblDiaChi.Text = "Vui lòng nhập địa chỉ";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblDiaChi.Text = "";
+            }
+
+            //kiem tra neu chuoi vuot qua ki tu cho phep
+            if (!KiemTraSoKyTuNhapVao(200, txtDiaChi.Text))
+            {
+                lblDiaChi.Text = "Chỉ được nhập tối đa 200 kí tự!";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblDiaChi.Text = "";
+            }
         }
 
         private void txtSDT_TextChanged(object sender, EventArgs e)
         {
-            
+            Regex reg = new Regex(@"^[\d]{10,11}$");
+
+            if (!reg.IsMatch(txtSDT.Text))
+            {
+                lblDT.Text = "Số điện thoại phải 10 hoặc 11 số";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblDT.Text = "";
+                checkInsertCustommer = true;
+            }
         }
 
         private void txtEmail_TextChanged(object sender, EventArgs e)
         {
+            Regex reg = new Regex(@"^[\w._%+-]+@[a-z]+\.[a-z]{2,6}$");
+
+            if (!reg.IsMatch(txtEmail.Text))
+            {
+                lblEmail.Text = "Email không đúng định dạng";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblEmail.Text = "";
+                checkInsertCustommer = true;
+            }
         }
 
         private void txtDiaChiDO_TextChanged(object sender, EventArgs e)
@@ -217,12 +331,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (txtDiaChiDO.Text.Trim() == "")
             {
                 lblDiaChiDO.Text = "Vui lòng nhập địa chỉ";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblDiaChiDO.Text = "";
             }
 
@@ -230,12 +344,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!KiemTraSoKyTuNhapVao(200, txtDiaChiDO.Text))
             {
                 lblDiaChiDO.Text = "Chỉ được nhập tối đa 200 kí tự!";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblDiaChiDO.Text = "";
             }
         }
@@ -254,7 +368,7 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (txtHuongNha.Text.Trim() == "")
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblHuongNha.Text = "";
                 return;
             }
@@ -263,12 +377,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!KiemTraSoKyTuNhapVao(80, txtHuongNha.Text.Trim()))
             {
                 lblHuongNha.Text = "Chỉ được nhập tối đa 100 kí tự!";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblHuongNha.Text = "";
             }
         }
@@ -277,7 +391,7 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (txtViTri.Text.Trim() == "")
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblViTri.Text = "";
                 return;
             }
@@ -286,12 +400,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!KiemTraSoKyTuNhapVao(50, txtViTri.Text.Trim()))
             {
                 lblViTri.Text = "Chỉ được nhập tối đa 100 kí tự!";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblViTri.Text = "";
             }
         }
@@ -300,7 +414,7 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (txtMoTa.Text.Trim() == "")
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblMoTa.Text = "";
                 return;
             }
@@ -309,12 +423,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!KiemTraSoKyTuNhapVao(200, txtMoTa.Text.Trim()))
             {
                 lblMoTa.Text = "Chỉ được nhập tối đa 100 kí tự!";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblMoTa.Text = "";
             }
         }
@@ -323,7 +437,7 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (txtGiaBan.Text.Trim() == "")
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblGiaBan.Text = "";
                 return;
             }
@@ -332,12 +446,12 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!KiemTraSoKyTuNhapVao(25, txtGiaBan.Text.Trim()))
             {
                 lblGiaBan.Text = "Chỉ được nhập tối đa 25 kí tự!";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
-                checkThemDO = true;
+                checkInsertCustommer = true;
                 lblGiaBan.Text = "";
             }
 
@@ -345,19 +459,14 @@ namespace QuanLyDiaOc.PresentationLayers
             if (!regex.IsMatch(txtGiaBan.Text.Trim()))
             {
                 lblGiaBan.Text = "Định dạng không hợp lệ";
-                checkThemDO = false;
+                checkInsertCustommer = false;
                 return;
             }
             else
             {
                 lblGiaBan.Text = "";
-                checkThemDO = true;
+                checkInsertCustommer = true;
             }
-        }
-
-        private void txtXoa_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void ckbAll_CheckedChanged(object sender, EventArgs e)
@@ -397,8 +506,6 @@ namespace QuanLyDiaOc.PresentationLayers
 
             if ((e.KeyChar < '0' || e.KeyChar > '9') && e.KeyChar != 8 && e.KeyChar != 127)
                 e.Handled = true;
-
-
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -445,6 +552,29 @@ namespace QuanLyDiaOc.PresentationLayers
                 int len = cbLoaiDiaOc.Text.Length;
                 cbLoaiDiaOc.SelectedIndex = find;
                 cbLoaiDiaOc.Select(len, cbLoaiDiaOc.Text.Length);
+            }
+        }
+
+        private void txtNamSinh_TextChanged(object sender, EventArgs e)
+        {
+            Regex reg = new Regex(@"^[\d]{4}$");
+            bool hight = false;
+            bool low = false;
+            if (txtNamSinh.Text != "")
+            {
+                hight = Int32.Parse(txtNamSinh.Text.ToString()) <= DateTime.Now.Year - 18;
+                low = Int32.Parse(txtNamSinh.Text.ToString()) >= DateTime.Now.Year - 120;
+            }
+         
+            if (!reg.IsMatch(txtNamSinh.Text) || !hight || !low)
+            {
+                lblNamSinh.Text = "Năm sinh không hợp lệ";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblNamSinh.Text = "";
+                checkInsertCustommer = true;
             }
         }
     }

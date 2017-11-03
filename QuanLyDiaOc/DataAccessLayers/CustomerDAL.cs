@@ -54,5 +54,24 @@ namespace QuanLyDiaOc.DataAccessLayers
                 return false;
             }
         }
+
+        public bool DeleteCustomer(string maKH)
+        {
+            try
+            {
+                OpenConnect();
+                string store = "sp_KhachHang_Xoa";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@ma", maKH));
+                sqlCommand.ExecuteNonQuery();
+                CloseConnect();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
