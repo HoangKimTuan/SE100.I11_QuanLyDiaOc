@@ -30,6 +30,7 @@
         {
             this.tabCtrlPhieuDangKy = new System.Windows.Forms.TabControl();
             this.tabPageKhachHang = new System.Windows.Forms.TabPage();
+            this.btnThemMoi = new System.Windows.Forms.Button();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +45,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnThem = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
-            this.txtSua = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
             this.gbthongtinkhachhang = new System.Windows.Forms.GroupBox();
             this.lblNamSinh = new System.Windows.Forms.Label();
             this.rbNu = new System.Windows.Forms.RadioButton();
@@ -190,12 +191,13 @@
             // tabPageKhachHang
             // 
             this.tabPageKhachHang.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPageKhachHang.Controls.Add(this.btnThemMoi);
             this.tabPageKhachHang.Controls.Add(this.dgvKhachHang);
             this.tabPageKhachHang.Controls.Add(this.panel1);
             this.tabPageKhachHang.Controls.Add(this.label1);
             this.tabPageKhachHang.Controls.Add(this.btnThem);
             this.tabPageKhachHang.Controls.Add(this.btnXoa);
-            this.tabPageKhachHang.Controls.Add(this.txtSua);
+            this.tabPageKhachHang.Controls.Add(this.btnSua);
             this.tabPageKhachHang.Controls.Add(this.gbthongtinkhachhang);
             this.tabPageKhachHang.Location = new System.Drawing.Point(4, 22);
             this.tabPageKhachHang.Name = "tabPageKhachHang";
@@ -203,6 +205,17 @@
             this.tabPageKhachHang.Size = new System.Drawing.Size(963, 554);
             this.tabPageKhachHang.TabIndex = 0;
             this.tabPageKhachHang.Text = "Thông tin khách hàng";
+            // 
+            // btnThemMoi
+            // 
+            this.btnThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnThemMoi.Location = new System.Drawing.Point(6, 365);
+            this.btnThemMoi.Name = "btnThemMoi";
+            this.btnThemMoi.Size = new System.Drawing.Size(85, 28);
+            this.btnThemMoi.TabIndex = 24;
+            this.btnThemMoi.Text = "Thêm mới";
+            this.btnThemMoi.UseVisualStyleBackColor = true;
+            this.btnThemMoi.Click += new System.EventHandler(this.btnThemMoi_Click);
             // 
             // dgvKhachHang
             // 
@@ -320,9 +333,9 @@
             // btnThem
             // 
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThem.Location = new System.Drawing.Point(10, 367);
+            this.btnThem.Location = new System.Drawing.Point(97, 365);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(92, 28);
+            this.btnThem.Size = new System.Drawing.Size(88, 28);
             this.btnThem.TabIndex = 5;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
@@ -331,24 +344,24 @@
             // btnXoa
             // 
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(125, 367);
+            this.btnXoa.Location = new System.Drawing.Point(191, 365);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(92, 28);
+            this.btnXoa.Size = new System.Drawing.Size(69, 28);
             this.btnXoa.TabIndex = 6;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // txtSua
+            // btnSua
             // 
-            this.txtSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtSua.Location = new System.Drawing.Point(242, 367);
-            this.txtSua.Name = "txtSua";
-            this.txtSua.Size = new System.Drawing.Size(92, 28);
-            this.txtSua.TabIndex = 7;
-            this.txtSua.Text = "Sửa";
-            this.txtSua.UseVisualStyleBackColor = true;
-            this.txtSua.Click += new System.EventHandler(this.txtSua_Click);
+            this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSua.Location = new System.Drawing.Point(266, 365);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(68, 28);
+            this.btnSua.TabIndex = 7;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // gbthongtinkhachhang
             // 
@@ -375,7 +388,7 @@
             this.gbthongtinkhachhang.ForeColor = System.Drawing.Color.Black;
             this.gbthongtinkhachhang.Location = new System.Drawing.Point(6, 23);
             this.gbthongtinkhachhang.Name = "gbthongtinkhachhang";
-            this.gbthongtinkhachhang.Size = new System.Drawing.Size(328, 319);
+            this.gbthongtinkhachhang.Size = new System.Drawing.Size(328, 336);
             this.gbthongtinkhachhang.TabIndex = 13;
             this.gbthongtinkhachhang.TabStop = false;
             this.gbthongtinkhachhang.Text = "Thông tin cá nhân";
@@ -442,9 +455,9 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.ForeColor = System.Drawing.Color.Red;
-            this.lblEmail.Location = new System.Drawing.Point(9, 301);
+            this.lblEmail.Location = new System.Drawing.Point(9, 309);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(0, 18);
+            this.lblEmail.Size = new System.Drawing.Size(32, 18);
             this.lblEmail.TabIndex = 12;
             // 
             // lblDT
@@ -1572,7 +1585,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Button btnXoa;
-        private System.Windows.Forms.Button txtSua;
+        private System.Windows.Forms.Button btnSua;
         private System.Windows.Forms.GroupBox gbthongtinkhachhang;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtSDT;
@@ -1687,5 +1700,6 @@
         private System.Windows.Forms.RadioButton rbNu;
         private System.Windows.Forms.RadioButton rbNam;
         private System.Windows.Forms.Label lblNamSinh;
+        private System.Windows.Forms.Button btnThemMoi;
     }
 }

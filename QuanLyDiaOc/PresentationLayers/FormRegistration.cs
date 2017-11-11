@@ -32,6 +32,27 @@ namespace QuanLyDiaOc.PresentationLayers
             QC_Bao = 2
         }
 
+        private void EnableAdd()
+        {
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+        }
+
+        private void EnableEdit()
+        {
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
+        }
+
+        private void Empty()
+        {
+            txtHoTen.Text = txtDiaChi.Text = txtNamSinh.Text = txtEmail.Text = txtSDT.Text = "";
+            rbNam.Checked = true;
+            customerId = "";
+        }
+
         private bool[] isChecked = new bool[3];
 
 
@@ -39,9 +60,8 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             tabCtrlPhieuDangKy.SelectedIndex = 0;
             dgvKhachHang.DataSource = customerBLL.GetListCustomer();
-            txtDiaChi.Text = txtHoTen.Text = txtNamSinh.Text = txtDiaChi.Text = txtEmail.Text = "";
-            rbNam.Checked = true;
-            customerId = "";
+            Empty();
+            EnableAdd();
         }
 
         private bool KiemTraTab()
@@ -100,6 +120,18 @@ namespace QuanLyDiaOc.PresentationLayers
                 int i = -1;
                 i = dgvKhachHang.CurrentRow.Index;
                 customerId = dgvKhachHang.Rows[i].Cells["MaKH"].Value.ToString();
+                txtHoTen.Text = dgvKhachHang.Rows[i].Cells["TenKH"].Value.ToString();
+                String gioiTinh = dgvKhachHang.Rows[i].Cells["GioiTinh"].Value.ToString();
+                if (gioiTinh == "Nam")
+                    rbNam.Checked = true;
+                else
+                    rbNu.Checked = true;
+                txtNamSinh.Text = dgvKhachHang.Rows[i].Cells["NamSinh"].Value.ToString();
+                txtDiaChi.Text = dgvKhachHang.Rows[i].Cells["DiaChi"].Value.ToString();
+                txtSDT.Text = dgvKhachHang.Rows[i].Cells["SDT"].Value.ToString();
+                txtEmail.Text = dgvKhachHang.Rows[i].Cells["Email"].Value.ToString();
+
+                EnableEdit();
             }
             catch { }
         }
@@ -126,9 +158,42 @@ namespace QuanLyDiaOc.PresentationLayers
 
         }
 
-        private void txtSua_Click(object sender, EventArgs e)
+        private void btnSua_Click(object sender, EventArgs e)
         {
-            
+            if (checkInsertCustommer)
+            {
+                string gioiTinh = "Nam";
+                if (rbNu.Checked)
+                    gioiTinh = "Nữ";
+
+                CustomerDTO customerDTO = new CustomerDTO(customerId, txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
+
+                try
+                {
+                    if (customerBLL.UpdateCustomer(customerDTO))
+                    {
+                        MessageBox.Show("Sửa khách hàng thành công");
+                        dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sửa khách hàng thất bại");
+                    }
+                }
+                catch
+                {
+                }
+            }
+            else
+            {
+                MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
+            }
+        }
+
+        private void btnThemMoi_Click(object sender, EventArgs e)
+        {
+            EnableAdd();
+            Empty();
         }
 
         private void txtTimKiemKH_TextChanged(object sender, EventArgs e)

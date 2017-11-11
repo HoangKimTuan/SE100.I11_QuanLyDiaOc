@@ -26,5 +26,10 @@ namespace QuanLyDiaOc.BusinesLogicLayers
         {
             return customerDAL.DeleteCustomer(maKH);
         }
+
+        public bool UpdateCustomer(CustomerDTO customerDTO)
+        {
+            return customerDAL.UpdateCustomer(customerDTO);
+        }
     }
 }

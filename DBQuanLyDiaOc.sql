@@ -167,12 +167,12 @@ AS
 GO
 
 CREATE PROC sp_KhachHang_Them
- @ten nvarchar(100),
- @gioitinh nvarchar(3),
- @namsinh smallint,
- @diachi nvarchar(200),
- @sdt nvarchar(20),
- @email nvarchar(20)
+@ten nvarchar(100),
+@gioitinh nvarchar(3),
+@namsinh smallint,
+@diachi nvarchar(200),
+@sdt nvarchar(20),
+@email nvarchar(20)
 
 AS
 	INSERT INTO KhachHang VALUES(@ten, @gioitinh, @namsinh, @diachi, @sdt, @email)
@@ -185,6 +185,18 @@ AS
 	DELETE FROM KhachHang WHERE MaKH=@ma
 GO
 
+CREATE PROC sp_KhachHang_Sua
+@ma varchar(10),
+@ten nvarchar(100),
+@gioitinh nvarchar(3),
+@namsinh smallint,
+@diachi nvarchar(200),
+@sdt nvarchar(20),
+@email nvarchar(20)
+
+AS
+	UPDATE KhachHang SET TenKH=@ten, GioiTinh=@gioitinh, NamSinh=@namsinh, DiaChi=@diachi, SDT=@sdt, Email=@email WHERE MaKH=@ma
+GO
 
 
 

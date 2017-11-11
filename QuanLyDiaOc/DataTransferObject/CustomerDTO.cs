@@ -25,5 +25,16 @@ namespace QuanLyDiaOc.DataTransferObject
             SDT = sdt;
             Email = email;
         }
+
+        public CustomerDTO(string makh, string tenkh, string gioiTinh, int namSinh, string diachi, string sdt, string email)
+        {
+            MaKH = makh;
+            TenKH = tenkh;
+            GioiTinh = gioiTinh;
+            NamSinh = namSinh;
+            DiaChi = diachi;
+            SDT = sdt;
+            Email = email;
+        }
     }
 }
