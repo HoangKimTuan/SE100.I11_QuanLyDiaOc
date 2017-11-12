@@ -31,6 +31,27 @@ namespace QuanLyDiaOc.DataAccessLayers
             }
         }
 
+        public DataTable SearchCustomer(string tuKhoa)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_KhachHang_TimKiem";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@tukhoa", tuKhoa));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                CloseConnect();
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public bool InsertCustomer(CustomerDTO customerDTO)
         {
             try

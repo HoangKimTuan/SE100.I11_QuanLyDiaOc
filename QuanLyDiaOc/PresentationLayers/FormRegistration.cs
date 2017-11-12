@@ -199,7 +199,7 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void txtTimKiemKH_TextChanged(object sender, EventArgs e)
         {
-            
+            dgvKhachHang.DataSource = customerBLL.SearchCustomer(txtTimKiemKH.Text);
         }
 
         private void dataGrid_DiaOc_SelectionChanged(object sender, EventArgs e)
