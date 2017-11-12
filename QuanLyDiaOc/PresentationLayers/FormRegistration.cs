@@ -51,6 +51,7 @@ namespace QuanLyDiaOc.PresentationLayers
             txtHoTen.Text = txtDiaChi.Text = txtNamSinh.Text = txtEmail.Text = txtSDT.Text = "";
             rbNam.Checked = true;
             customerId = "";
+            lblHoTen.Text = lblDiaChi.Text = lblNamSinh.Text = lblEmail.Text = lblDT.Text = "";
         }
 
         private bool[] isChecked = new bool[3];
