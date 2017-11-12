@@ -15,29 +15,28 @@ create table KhachHang
 	Email nvarchar(20)
 )
 
-create table DIAOC
+create table DiaOc
 (	
-	MaDO nchar(10) primary key not null,
-	MaKH nchar(10) not null,
-	MaLoaiDiaOC nchar(10) not null,
-	SoNha int,
-	Duong nvarchar(50),
-	Phuong nvarchar(50),
-	Quan nvarchar(50),
-	DienTichDat numeric(18,2),
-	DienTichXayDung numeric(18,2),
-	Huong nvarchar(100),
+	ID int identity(1,1) not null primary key clustered,
+	MaDO as 'DO' + RIGHT('000' + CAST(ID as varchar(5)), 5) persisted,
+	MaKH varchar(10) not null,
+	MaLoaiDO varchar(10) not null,
+	DiaChi nvarchar(200),
+	DienTichKhuonVien numeric(18,2),
+	DienTichSuDung numeric(18,2),
+	HuongNha nvarchar(100),
 	ViTri nvarchar(100),
 	MoTaChiTiet nvarchar(100),
-	MoTaTomTat nvarchar(50),
+	GiaBan money,
 	HinhAnh bit,
 	TrangThai nvarchar(50),
 )
 
 create table LoaiDiaOc
 (
-	MaLoaiDiaOc nchar(10) primary key not null,
-	TenLoaiDiaOc nvarchar(50),
+	ID int identity(1,1) not null primary key clustered,
+	MaLoaiDO as 'LDO' + RIGHT('00' + CAST(ID as varchar(5)), 5) persisted,
+	TenLoaiDO nvarchar(50),
 )
 
 create table PhieuDangKy
@@ -132,7 +131,8 @@ create table ThamSo
 
 create table NguoiDung
 (
-	MaNguoiDung nchar(5) not null,
+	ID int identity(1,1) not null primary key clustered,
+	MaNguoiDung as 'ND' + RIGHT('000' + CAST(ID as varchar(5)), 5) persisted,
 	TenNguoiDung nvarchar(30) not null,
 	MatKhau nvarchar(25) not null,
 	MaLoaiNguoiDung nchar(5) not null,
@@ -140,7 +140,8 @@ create table NguoiDung
 
 create table LoaiNguoiDung
 (
-	MaLoaiNguoiDung nchar(5) not null,
+	ID int identity(1,1) not null primary key clustered,
+	MaLoaiNguoiDung as 'LND' + RIGHT('00' + CAST(ID as varchar(5)), 5) persisted,
 	LoaiNguoiDung nvarchar(30) not null,
 	MoTa nvarchar(100),
 )
@@ -198,20 +199,45 @@ AS
 	UPDATE KhachHang SET TenKH=@ten, GioiTinh=@gioitinh, NamSinh=@namsinh, DiaChi=@diachi, SDT=@sdt, Email=@email WHERE MaKH=@ma
 GO
 
+CREATE PROC sp_KhachHang_TimKiem
+@tukhoa nvarchar(100)
+
+AS
+	SELECT MaKH, TenKH, GioiTinh, NamSinh, DiaChi, SDT, Email FROM KhachHang WHERE TenKH LIKE '%'+ @tukhoa +'%'
+GO
+
+
+CREATE PROC sp_DiaOc_LayDanhSach
+@makh varchar(10)
+
+AS
+	SELECT MaDO, TenLoaiDiaOc, SoNha, Duong, Phuong, Quan, DienTichDat, DienTichXayDung, Huong, ViTri, MoTaChiTiet, MoTaTomTat, TrangThai FROM DiaOc, LoaiDiaOc WHERE MaKH=@makh AND MaLoaiDiaOC=MaLoaiDO
+GO
 
 
 
-
-INSERT INTO NguoiDung VALUES('ND001', 'HoangKimTuan', '123456', 'LND01')
-INSERT INTO LoaiNguoiDung VALUES('LND01', 'admin', 'All role')
+INSERT INTO NguoiDung VALUES('HoangKimTuan', '123456', 'LND01')
+INSERT INTO LoaiNguoiDung VALUES('admin', 'All role')
 INSERT INTO KhachHang VALUES(N'Nguyễn Văn A', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO KhachHang VALUES(N'Nguyễn Văn B', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO KhachHang VALUES(N'Nguyễn Văn C', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO KhachHang VALUES(N'Nguyễn Văn D', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO KhachHang VALUES(N'Nguyễn Văn E', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO KhachHang VALUES(N'Nguyễn Văn F', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
+INSERT INTO LoaiDiaOc VALUES('A')
+INSERT INTO LoaiDiaOc VALUES('B')
+INSERT INTO LoaiDiaOc VALUES('C')
+INSERT INTO DiaOc VALUES('KH0006', 'LDO001', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0007', 'LDO001', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0008', 'LDO002', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0006', 'LDO001', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0006', 'LDO002', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0007', 'LDO001', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0008', 'LDO001', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0008', 'LDO003', 30, N'Vành Đai', N'Tân Lập', N'TX. Dĩ An', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', N'Nói chung là đẹp', 1, N'Chưa bán')
 
 
-
-
-
-
-
+SELECT DISTINCT MaDO, TenLoaiDiaOc, SoNha, Duong, Phuong, Quan, DienTichDat, DienTichXayDung, Huong, ViTri, MoTaChiTiet, MoTaTomTat, TrangThai FROM DiaOc, LoaiDiaOc WHERE MaKH='KH0007' AND MaLoaiDiaOC=MaLoaiDO
 
 
 

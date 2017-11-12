@@ -50,10 +50,13 @@
   <ItemGroup>
     <Compile Include="BusinesLogicLayers\CustomerBLL.cs" />
     <Compile Include="BusinesLogicLayers\LoginBLL.cs" />
+    <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="DataAccessLayers\Connection.cs" />
     <Compile Include="DataAccessLayers\CustomerDAL.cs" />
     <Compile Include="DataAccessLayers\LoginDAL.cs" />
+    <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataTransferObject\CustomerDTO.cs" />
+    <Compile Include="DataTransferObject\RealEstateDTO.cs" />
     <Compile Include="PresentationLayers\FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>

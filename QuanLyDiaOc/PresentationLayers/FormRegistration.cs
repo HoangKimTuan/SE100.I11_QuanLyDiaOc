@@ -16,13 +16,16 @@ namespace QuanLyDiaOc.PresentationLayers
     public partial class FormRegistration : Form
     {
         private CustomerBLL customerBLL;
+        private RealEstateBLL realEstateBLL;
         private string customerId;
-        private bool checkInsertCustommer = false;
+        private string customerName;
+        private bool checkInsertCustommer;
 
         public FormRegistration()
         {
             InitializeComponent();
             customerBLL = new CustomerBLL();
+            realEstateBLL = new RealEstateBLL();
         }
 
         private enum EnumQuangCao
@@ -51,6 +54,8 @@ namespace QuanLyDiaOc.PresentationLayers
             txtHoTen.Text = txtDiaChi.Text = txtNamSinh.Text = txtEmail.Text = txtSDT.Text = "";
             rbNam.Checked = true;
             customerId = "";
+            customerName = "";
+            checkInsertCustommer = false;
             lblHoTen.Text = lblDiaChi.Text = lblNamSinh.Text = lblEmail.Text = lblDT.Text = "";
         }
 
@@ -67,7 +72,27 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private bool KiemTraTab()
         {
-            return true;
+            if (tabCtrlPhieuDangKy.SelectedIndex == 0)
+                return true;
+            if (tabCtrlPhieuDangKy.SelectedIndex == 1)
+            {
+                if (customerId != "" && customerName != "")
+                {
+                    dgvDiaOc.DataSource = realEstateBLL.GetListRealEstate(customerId);
+                    lblMaKH.Text = "Mã KH: " + customerId;
+                    lblTenKH.Text = "Họ tên: " + customerName;
+                    return true;
+                }
+                else
+                {
+                    tabCtrlPhieuDangKy.SelectedIndex -= 1;
+                    MessageBox.Show(this, "Vui lòng chọn khách hàng trước khi sang tab kế tiếp", "Chú ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+
+            }
+
+            return false;
         }
 
         private void tabCtrlPhieuDangKy_SelectedIndexChanged(object sender, EventArgs e)
@@ -121,6 +146,7 @@ namespace QuanLyDiaOc.PresentationLayers
                 int i = -1;
                 i = dgvKhachHang.CurrentRow.Index;
                 customerId = dgvKhachHang.Rows[i].Cells["MaKH"].Value.ToString();
+                customerName = dgvKhachHang.Rows[i].Cells["TenKH"].Value.ToString();
                 txtHoTen.Text = dgvKhachHang.Rows[i].Cells["TenKH"].Value.ToString();
                 String gioiTinh = dgvKhachHang.Rows[i].Cells["GioiTinh"].Value.ToString();
                 if (gioiTinh == "Nam")
@@ -200,6 +226,29 @@ namespace QuanLyDiaOc.PresentationLayers
         private void txtTimKiemKH_TextChanged(object sender, EventArgs e)
         {
             dgvKhachHang.DataSource = customerBLL.SearchCustomer(txtTimKiemKH.Text);
+        }
+
+        private void txtNamSinh_TextChanged(object sender, EventArgs e)
+        {
+            Regex reg = new Regex(@"^[\d]{4}$");
+            bool hight = false;
+            bool low = false;
+            if (txtNamSinh.Text != "")
+            {
+                hight = Int32.Parse(txtNamSinh.Text.ToString()) <= DateTime.Now.Year - 18;
+                low = Int32.Parse(txtNamSinh.Text.ToString()) >= DateTime.Now.Year - 120;
+            }
+
+            if (!reg.IsMatch(txtNamSinh.Text) || !hight || !low)
+            {
+                lblNamSinh.Text = "Năm sinh không hợp lệ";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblNamSinh.Text = "";
+                checkInsertCustommer = true;
+            }
         }
 
         private void dataGrid_DiaOc_SelectionChanged(object sender, EventArgs e)
@@ -618,29 +667,6 @@ namespace QuanLyDiaOc.PresentationLayers
                 int len = cbLoaiDiaOc.Text.Length;
                 cbLoaiDiaOc.SelectedIndex = find;
                 cbLoaiDiaOc.Select(len, cbLoaiDiaOc.Text.Length);
-            }
-        }
-
-        private void txtNamSinh_TextChanged(object sender, EventArgs e)
-        {
-            Regex reg = new Regex(@"^[\d]{4}$");
-            bool hight = false;
-            bool low = false;
-            if (txtNamSinh.Text != "")
-            {
-                hight = Int32.Parse(txtNamSinh.Text.ToString()) <= DateTime.Now.Year - 18;
-                low = Int32.Parse(txtNamSinh.Text.ToString()) >= DateTime.Now.Year - 120;
-            }
-         
-            if (!reg.IsMatch(txtNamSinh.Text) || !hight || !low)
-            {
-                lblNamSinh.Text = "Năm sinh không hợp lệ";
-                checkInsertCustommer = false;
-            }
-            else
-            {
-                lblNamSinh.Text = "";
-                checkInsertCustommer = true;
             }
         }
     }
