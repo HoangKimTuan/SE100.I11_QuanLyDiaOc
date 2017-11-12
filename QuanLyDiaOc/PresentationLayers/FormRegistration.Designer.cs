@@ -594,6 +594,7 @@
             this.dgvDiaOc.Location = new System.Drawing.Point(363, 48);
             this.dgvDiaOc.Name = "dgvDiaOc";
             this.dgvDiaOc.ReadOnly = true;
+            this.dgvDiaOc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDiaOc.Size = new System.Drawing.Size(562, 369);
             this.dgvDiaOc.TabIndex = 23;
             this.dgvDiaOc.SelectionChanged += new System.EventHandler(this.dataGrid_DiaOc_SelectionChanged);

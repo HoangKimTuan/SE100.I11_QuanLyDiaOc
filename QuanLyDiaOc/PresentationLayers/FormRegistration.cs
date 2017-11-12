@@ -17,6 +17,7 @@ namespace QuanLyDiaOc.PresentationLayers
     {
         private CustomerBLL customerBLL;
         private RealEstateBLL realEstateBLL;
+        private RealEstateTypeBLL RealEstateTypeBLL;
         private string customerId;
         private string customerName;
         private bool checkInsertCustommer;
@@ -26,6 +27,7 @@ namespace QuanLyDiaOc.PresentationLayers
             InitializeComponent();
             customerBLL = new CustomerBLL();
             realEstateBLL = new RealEstateBLL();
+            RealEstateTypeBLL = new RealEstateTypeBLL();
         }
 
         private enum EnumQuangCao
@@ -70,29 +72,25 @@ namespace QuanLyDiaOc.PresentationLayers
             EnableAdd();
         }
 
-        private bool KiemTraTab()
+        private void KiemTraTab()
         {
             if (tabCtrlPhieuDangKy.SelectedIndex == 0)
-                return true;
+                return;
             if (tabCtrlPhieuDangKy.SelectedIndex == 1)
             {
-                if (customerId != "" && customerName != "")
+                if (customerId != "")
                 {
                     dgvDiaOc.DataSource = realEstateBLL.GetListRealEstate(customerId);
                     lblMaKH.Text = "Mã KH: " + customerId;
                     lblTenKH.Text = "Họ tên: " + customerName;
-                    return true;
                 }
                 else
                 {
                     tabCtrlPhieuDangKy.SelectedIndex -= 1;
                     MessageBox.Show(this, "Vui lòng chọn khách hàng trước khi sang tab kế tiếp", "Chú ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
                 }
-
+                return;
             }
-
-            return false;
         }
 
         private void tabCtrlPhieuDangKy_SelectedIndexChanged(object sender, EventArgs e)
@@ -141,6 +139,10 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void dataGrid_KH_SelectionChanged(object sender, EventArgs e)
         {
+            if (dgvKhachHang.SelectedRows.Count <= 0)
+            {
+                return;
+            }
             try
             {
                 int i = -1;
@@ -253,7 +255,26 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void dataGrid_DiaOc_SelectionChanged(object sender, EventArgs e)
         {
-            
+            if (dgvDiaOc.SelectedRows.Count <= 0)
+            {
+                return;
+            }
+            try
+            {
+                int i = -1;
+                i = dgvDiaOc.CurrentRow.Index;
+                cbLoaiDiaOc.DataSource = RealEstateTypeBLL.GetListRealEstateType();
+                cbLoaiDiaOc.DisplayMember = "TenLoaiDO";
+                cbLoaiDiaOc.ValueMember = "MaLoaiDO";
+                txtDiaChiDO.Text = dgvDiaOc.Rows[i].Cells["DiaChiDO"].Value.ToString();
+                txtDTKV.Text = dgvDiaOc.Rows[i].Cells["DienTichKhuonVien"].Value.ToString();
+                txtDTSD.Text = dgvDiaOc.Rows[i].Cells["DienTichSuDung"].Value.ToString();
+                txtHuongNha.Text = dgvDiaOc.Rows[i].Cells["HuongNha"].Value.ToString();
+                txtViTri.Text = dgvDiaOc.Rows[i].Cells["ViTri"].Value.ToString();
+                txtMoTa.Text = dgvDiaOc.Rows[i].Cells["MoTaChiTiet"].Value.ToString();
+                txtGiaBan.Text = dgvDiaOc.Rows[i].Cells["GiaBan"].Value.ToString();
+            }
+            catch { }
         }
 
         private void btnThemDiaOc_Click(object sender, EventArgs e)
