@@ -135,7 +135,7 @@ create table NguoiDung
 	MaNguoiDung as 'ND' + RIGHT('000' + CAST(ID as varchar(5)), 5) persisted,
 	TenNguoiDung nvarchar(30) not null,
 	MatKhau nvarchar(25) not null,
-	MaLoaiNguoiDung nchar(5) not null,
+	MaLoaiNguoiDung varchar(10) not null,
 )
 
 create table LoaiNguoiDung
@@ -154,11 +154,55 @@ AS
 	SELECT MaNguoiDung FROM NguoiDung WHERE TenNguoiDung=@user AND MatKhau=@pass
 GO
 
+CREATE PROC sp_NguoiDung_LoaiNguoiDung_LayDanhSach
+
+AS
+	SELECT MaNguoiDung, TenNguoiDung, LoaiNguoiDung FROM NguoiDung, LoaiNguoiDung WHERE NguoiDung.MaLoaiNguoiDung = LoaiNguoiDung.MaLoaiNguoiDung
+GO
+
+CREATE PROC sp_NguoiDung_Them
+@ten nvarchar(30),
+@mk nvarchar(25),
+@malnd varchar(10)
+
+AS
+	INSERT INTO NguoiDung VALUES(@ten, @mk, @malnd)
+GO
+
+CREATE PROC sp_NguoiDung_Sua
+@ten nvarchar(30),
+@mk nvarchar(25)
+
+AS
+	IF (SELECT COUNT(*) FROM NguoiDung WHERE TenNguoiDung=@ten) > 0
+		BEGIN
+			SELECT * FROM NguoiDung WHERE TenNguoiDung=@ten
+			UPDATE NguoiDung SET MatKhau=@mk WHERE TenNguoiDung=@ten
+		END
+	ELSE
+		BEGIN
+			SELECT * FROM NguoiDung WHERE TenNguoiDung=@ten
+		END
+GO
+
+CREATE PROC sp_NguoiDung_Xoa
+@ma varchar(10)
+
+AS
+	DELETE FROM NguoiDung WHERE MaNguoiDung=@ma
+GO
+
 CREATE PROC sp_NguoiDung_LoaiNguoiDung_LayLoaiNguoiDung
 @user nvarchar(30)
 
 AS
 	SELECT LoaiNguoiDung FROM NguoiDung, LoaiNguoiDung WHERE TenNguoiDung=@user AND NguoiDung.MaLoaiNguoiDung=LoaiNguoiDung.MaLoaiNguoiDung
+GO
+
+CREATE PROC sp_LoaiNguoiDung_LayDanhSach
+
+AS
+	SELECT * FROM LoaiNguoiDung
 GO
 
 CREATE PROC sp_KhachHang_LayDanhSach
@@ -263,8 +307,10 @@ GO
 
 
 
-INSERT INTO NguoiDung VALUES('HoangKimTuan', '123456', 'LND01')
+INSERT INTO NguoiDung VALUES('HoangKimTuan', '123456', 'LND001')
+INSERT INTO NguoiDung VALUES('HoangKimTuan', '12345678', 'LND002')
 INSERT INTO LoaiNguoiDung VALUES('admin', 'All role')
+INSERT INTO LoaiNguoiDung VALUES('staff', 'Unknown')
 INSERT INTO KhachHang VALUES(N'Nguyễn Văn A', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
 INSERT INTO KhachHang VALUES(N'Nguyễn Văn B', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')
 INSERT INTO KhachHang VALUES(N'Nguyễn Văn C', N'Nam', 1990, N'Thủ Đức', '0123654987', 'nguyenvana@gmail.com')

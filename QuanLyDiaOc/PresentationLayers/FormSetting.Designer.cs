@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridTaiKhoan = new System.Windows.Forms.DataGridView();
-            this.TenTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTaiKhoan = new System.Windows.Forms.DataGridView();
             this.cbChucVu = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btn_LuuMK = new System.Windows.Forms.Button();
@@ -47,6 +45,7 @@
             this.btnThoat = new System.Windows.Forms.Button();
             this.txtMKMoi = new System.Windows.Forms.TextBox();
             this.tabPage_ThemTK = new System.Windows.Forms.TabPage();
+            this.lblUserName = new System.Windows.Forms.Label();
             this.btnXoaTK = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPageThayDoiMK = new System.Windows.Forms.TabPage();
@@ -59,48 +58,40 @@
             this.txtSoTuoi = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.tabControl_CaiDat = new System.Windows.Forms.TabControl();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTaiKhoan)).BeginInit();
+            this.lblPass = new System.Windows.Forms.Label();
+            this.MaTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenTK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChucVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).BeginInit();
             this.tabPage_ThemTK.SuspendLayout();
             this.tabPageThayDoiMK.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl_CaiDat.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridTaiKhoan
+            // dgvTaiKhoan
             // 
-            this.dataGridTaiKhoan.AllowUserToAddRows = false;
-            this.dataGridTaiKhoan.AllowUserToDeleteRows = false;
-            this.dataGridTaiKhoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridTaiKhoan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvTaiKhoan.AllowUserToAddRows = false;
+            this.dgvTaiKhoan.AllowUserToDeleteRows = false;
+            this.dgvTaiKhoan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTaiKhoan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaTK,
             this.TenTK,
             this.ChucVu});
-            this.dataGridTaiKhoan.Location = new System.Drawing.Point(24, 110);
-            this.dataGridTaiKhoan.Name = "dataGridTaiKhoan";
-            this.dataGridTaiKhoan.ReadOnly = true;
-            this.dataGridTaiKhoan.Size = new System.Drawing.Size(258, 101);
-            this.dataGridTaiKhoan.TabIndex = 28;
-            // 
-            // TenTK
-            // 
-            this.TenTK.DataPropertyName = "TENNGUOIDUNG";
-            this.TenTK.HeaderText = "Tên đăng nhập";
-            this.TenTK.Name = "TenTK";
-            this.TenTK.ReadOnly = true;
-            this.TenTK.Width = 115;
-            // 
-            // ChucVu
-            // 
-            this.ChucVu.DataPropertyName = "CAP";
-            this.ChucVu.HeaderText = "Chức vụ";
-            this.ChucVu.Name = "ChucVu";
-            this.ChucVu.ReadOnly = true;
+            this.dgvTaiKhoan.Location = new System.Drawing.Point(95, 112);
+            this.dgvTaiKhoan.Name = "dgvTaiKhoan";
+            this.dgvTaiKhoan.ReadOnly = true;
+            this.dgvTaiKhoan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTaiKhoan.Size = new System.Drawing.Size(359, 101);
+            this.dgvTaiKhoan.TabIndex = 28;
+            this.dgvTaiKhoan.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTaiKhoan_CellClick);
             // 
             // cbChucVu
             // 
             this.cbChucVu.FormattingEnabled = true;
             this.cbChucVu.Location = new System.Drawing.Point(383, 32);
             this.cbChucVu.Name = "cbChucVu";
-            this.cbChucVu.Size = new System.Drawing.Size(121, 21);
+            this.cbChucVu.Size = new System.Drawing.Size(161, 21);
             this.cbChucVu.TabIndex = 27;
             // 
             // label3
@@ -122,6 +113,7 @@
             this.btn_LuuMK.TabIndex = 21;
             this.btn_LuuMK.Text = "Lưu thay đổi ";
             this.btn_LuuMK.UseVisualStyleBackColor = true;
+            this.btn_LuuMK.Click += new System.EventHandler(this.btn_LuuMK_Click);
             // 
             // label7
             // 
@@ -140,6 +132,7 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(187, 22);
             this.txtTaiKhoan.TabIndex = 22;
+            this.txtTaiKhoan.TextChanged += new System.EventHandler(this.txtTaiKhoan_TextChanged);
             // 
             // txtMatKhau
             // 
@@ -149,6 +142,7 @@
             this.txtMatKhau.PasswordChar = '*';
             this.txtMatKhau.Size = new System.Drawing.Size(187, 22);
             this.txtMatKhau.TabIndex = 23;
+            this.txtMatKhau.TextChanged += new System.EventHandler(this.txtMatKhau_TextChanged);
             // 
             // label2
             // 
@@ -173,7 +167,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(105, 76);
+            this.label5.Location = new System.Drawing.Point(105, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 16);
             this.label5.TabIndex = 7;
@@ -210,18 +204,19 @@
             // btn_ThemTK
             // 
             this.btn_ThemTK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_ThemTK.Location = new System.Drawing.Point(413, 196);
+            this.btn_ThemTK.Location = new System.Drawing.Point(297, 67);
             this.btn_ThemTK.Name = "btn_ThemTK";
             this.btn_ThemTK.Size = new System.Drawing.Size(131, 28);
             this.btn_ThemTK.TabIndex = 21;
             this.btn_ThemTK.Text = "Thêm tài khoản";
             this.btn_ThemTK.UseVisualStyleBackColor = true;
+            this.btn_ThemTK.Click += new System.EventHandler(this.btn_ThemTK_Click);
             // 
             // btnThoat
             // 
             this.btnThoat.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThoat.Location = new System.Drawing.Point(475, 316);
+            this.btnThoat.Location = new System.Drawing.Point(500, 316);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(92, 28);
             this.btnThoat.TabIndex = 38;
@@ -240,8 +235,10 @@
             // 
             // tabPage_ThemTK
             // 
+            this.tabPage_ThemTK.Controls.Add(this.lblPass);
+            this.tabPage_ThemTK.Controls.Add(this.lblUserName);
             this.tabPage_ThemTK.Controls.Add(this.btnXoaTK);
-            this.tabPage_ThemTK.Controls.Add(this.dataGridTaiKhoan);
+            this.tabPage_ThemTK.Controls.Add(this.dgvTaiKhoan);
             this.tabPage_ThemTK.Controls.Add(this.cbChucVu);
             this.tabPage_ThemTK.Controls.Add(this.label3);
             this.tabPage_ThemTK.Controls.Add(this.txtMK);
@@ -257,22 +254,33 @@
             this.tabPage_ThemTK.Text = "Thêm tài khoản";
             this.tabPage_ThemTK.UseVisualStyleBackColor = true;
             // 
+            // lblUserName
+            // 
+            this.lblUserName.AutoSize = true;
+            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserName.ForeColor = System.Drawing.Color.Red;
+            this.lblUserName.Location = new System.Drawing.Point(24, 56);
+            this.lblUserName.Name = "lblUserName";
+            this.lblUserName.Size = new System.Drawing.Size(0, 9);
+            this.lblUserName.TabIndex = 30;
+            // 
             // btnXoaTK
             // 
             this.btnXoaTK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoaTK.Location = new System.Drawing.Point(288, 196);
+            this.btnXoaTK.Location = new System.Drawing.Point(428, 67);
             this.btnXoaTK.Name = "btnXoaTK";
             this.btnXoaTK.Size = new System.Drawing.Size(119, 28);
             this.btnXoaTK.TabIndex = 29;
             this.btnXoaTK.Text = "Xóa tài khoản";
             this.btnXoaTK.UseVisualStyleBackColor = true;
+            this.btnXoaTK.Click += new System.EventHandler(this.btnXoaTK_Click);
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(185, 9);
+            this.label6.Location = new System.Drawing.Point(206, 9);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(194, 31);
             this.label6.TabIndex = 37;
@@ -383,17 +391,49 @@
             this.tabControl_CaiDat.Controls.Add(this.tabPage1);
             this.tabControl_CaiDat.Controls.Add(this.tabPageThayDoiMK);
             this.tabControl_CaiDat.Controls.Add(this.tabPage_ThemTK);
-            this.tabControl_CaiDat.Location = new System.Drawing.Point(13, 54);
+            this.tabControl_CaiDat.Location = new System.Drawing.Point(34, 54);
             this.tabControl_CaiDat.Name = "tabControl_CaiDat";
             this.tabControl_CaiDat.SelectedIndex = 0;
             this.tabControl_CaiDat.Size = new System.Drawing.Size(558, 256);
             this.tabControl_CaiDat.TabIndex = 36;
             // 
+            // lblPass
+            // 
+            this.lblPass.AutoSize = true;
+            this.lblPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPass.ForeColor = System.Drawing.Color.Red;
+            this.lblPass.Location = new System.Drawing.Point(24, 97);
+            this.lblPass.Name = "lblPass";
+            this.lblPass.Size = new System.Drawing.Size(0, 9);
+            this.lblPass.TabIndex = 31;
+            // 
+            // MaTK
+            // 
+            this.MaTK.DataPropertyName = "MaNguoiDung";
+            this.MaTK.HeaderText = "Mã tài khoản";
+            this.MaTK.Name = "MaTK";
+            this.MaTK.ReadOnly = true;
+            // 
+            // TenTK
+            // 
+            this.TenTK.DataPropertyName = "TenNguoiDung";
+            this.TenTK.HeaderText = "Tên đăng nhập";
+            this.TenTK.Name = "TenTK";
+            this.TenTK.ReadOnly = true;
+            this.TenTK.Width = 115;
+            // 
+            // ChucVu
+            // 
+            this.ChucVu.DataPropertyName = "LoaiNguoiDung";
+            this.ChucVu.HeaderText = "Chức vụ";
+            this.ChucVu.Name = "ChucVu";
+            this.ChucVu.ReadOnly = true;
+            // 
             // FormSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 348);
+            this.ClientSize = new System.Drawing.Size(625, 348);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabControl_CaiDat);
@@ -402,7 +442,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormSetting";
             this.Load += new System.EventHandler(this.FormSetting_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTaiKhoan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTaiKhoan)).EndInit();
             this.tabPage_ThemTK.ResumeLayout(false);
             this.tabPage_ThemTK.PerformLayout();
             this.tabPageThayDoiMK.ResumeLayout(false);
@@ -417,9 +457,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridTaiKhoan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenTK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ChucVu;
+        private System.Windows.Forms.DataGridView dgvTaiKhoan;
         private System.Windows.Forms.ComboBox cbChucVu;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_LuuMK;
@@ -448,5 +486,10 @@
         private System.Windows.Forms.TabControl tabControl_CaiDat;
         private System.Windows.Forms.TextBox txtSoTuoi;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblUserName;
+        private System.Windows.Forms.Label lblPass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaTK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenTK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ChucVu;
     }
 }

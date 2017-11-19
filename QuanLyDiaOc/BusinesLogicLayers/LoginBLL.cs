@@ -19,26 +19,12 @@ namespace QuanLyDiaOc.BusinesLogicLayers
 
         public DataTable CheckLogin(string user, string pass)
         {
-            try
-            {
-                return loginDAL.CheckLogin(user, pass);
-            }
-            catch
-            {
-                return null;
-            }
+            return loginDAL.CheckLogin(user, pass);
         }
 
         public string GetType(string user)
         {
-            try
-            {
-                return loginDAL.GetType(user);
-            }
-            catch
-            {
-                return null;
-            }
+             return loginDAL.GetType(user);
         }
     }
 }

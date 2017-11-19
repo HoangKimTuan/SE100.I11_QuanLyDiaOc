@@ -53,14 +53,19 @@
     <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateTypeBLL.cs" />
     <Compile Include="BusinesLogicLayers\SettingBLL.cs" />
+    <Compile Include="BusinesLogicLayers\UserBLL.cs" />
+    <Compile Include="BusinesLogicLayers\UserTypeBLL.cs" />
     <Compile Include="DataAccessLayers\Connection.cs" />
     <Compile Include="DataAccessLayers\CustomerDAL.cs" />
     <Compile Include="DataAccessLayers\LoginDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateTypeDAL.cs" />
     <Compile Include="DataAccessLayers\SettingDAL.cs" />
+    <Compile Include="DataAccessLayers\UserDAL.cs" />
+    <Compile Include="DataAccessLayers\UserTypeDAL.cs" />
     <Compile Include="DataTransferObject\CustomerDTO.cs" />
     <Compile Include="DataTransferObject\RealEstateDTO.cs" />
+    <Compile Include="DataTransferObject\UserDTO.cs" />
     <Compile Include="PresentationLayers\FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>
