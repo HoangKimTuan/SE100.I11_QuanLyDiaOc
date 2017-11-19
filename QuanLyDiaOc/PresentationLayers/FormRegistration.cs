@@ -18,6 +18,7 @@ namespace QuanLyDiaOc.PresentationLayers
         private CustomerBLL customerBLL;
         private RealEstateBLL realEstateBLL;
         private RealEstateTypeBLL RealEstateTypeBLL;
+        private SettingBLL settingBLL;
         private string customerId;
         private string customerName;
         private bool checkInsertCustommer;
@@ -28,6 +29,7 @@ namespace QuanLyDiaOc.PresentationLayers
             customerBLL = new CustomerBLL();
             realEstateBLL = new RealEstateBLL();
             RealEstateTypeBLL = new RealEstateTypeBLL();
+            settingBLL = new SettingBLL();
         }
 
         private enum EnumQuangCao
@@ -59,6 +61,7 @@ namespace QuanLyDiaOc.PresentationLayers
             customerName = "";
             checkInsertCustommer = false;
             lblHoTen.Text = lblDiaChi.Text = lblNamSinh.Text = lblEmail.Text = lblDT.Text = "";
+            txtHoTen.Focus();
         }
 
         private bool[] isChecked = new bool[3];
@@ -68,8 +71,18 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             tabCtrlPhieuDangKy.SelectedIndex = 0;
             dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+            cbLoaiDiaOc.DataSource = RealEstateTypeBLL.GetListRealEstateType();
+            cbLoaiDiaOc.DisplayMember = "TenLoaiDO";
+            cbLoaiDiaOc.ValueMember = "MaLoaiDO";
             Empty();
             EnableAdd();
+
+            int minAge = Int32.Parse(settingBLL.GetMinAge());
+            int maxAge = Int32.Parse(settingBLL.GetMaxAge());
+            for (int i = maxAge; i >= minAge; i--)
+            {
+                txtNamSinh.Items.Add(DateTime.Now.Year - i);
+            }
         }
 
         private void KiemTraTab()
@@ -263,9 +276,7 @@ namespace QuanLyDiaOc.PresentationLayers
             {
                 int i = -1;
                 i = dgvDiaOc.CurrentRow.Index;
-                cbLoaiDiaOc.DataSource = RealEstateTypeBLL.GetListRealEstateType();
-                cbLoaiDiaOc.DisplayMember = "TenLoaiDO";
-                cbLoaiDiaOc.ValueMember = "MaLoaiDO";
+                cbLoaiDiaOc.Text = dgvDiaOc.Rows[i].Cells["LoaiDiaOc"].Value.ToString();
                 txtDiaChiDO.Text = dgvDiaOc.Rows[i].Cells["DiaChiDO"].Value.ToString();
                 txtDTKV.Text = dgvDiaOc.Rows[i].Cells["DienTichKhuonVien"].Value.ToString();
                 txtDTSD.Text = dgvDiaOc.Rows[i].Cells["DienTichSuDung"].Value.ToString();
@@ -689,6 +700,12 @@ namespace QuanLyDiaOc.PresentationLayers
                 cbLoaiDiaOc.SelectedIndex = find;
                 cbLoaiDiaOc.Select(len, cbLoaiDiaOc.Text.Length);
             }
+        }
+
+        private void ChiNhapSo_Cmb(object sender, KeyPressEventArgs e)
+        {
+            MessageBox.Show("Vui lòng chọn giá trị ở mũi tên bên cạnh");
+            e.Handled = true;
         }
     }
 }

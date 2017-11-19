@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHome));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnThongKe = new System.Windows.Forms.Button();
+            this.btnTraCuu = new System.Windows.Forms.Button();
+            this.btnCaiDat = new System.Windows.Forms.Button();
+            this.btnQLDichVu = new System.Windows.Forms.Button();
+            this.btnChupAnh = new System.Windows.Forms.Button();
+            this.btnGiaTienQC = new System.Windows.Forms.Button();
+            this.btnDangKy = new System.Windows.Forms.Button();
+            this.btnGiaHan = new System.Windows.Forms.Button();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.càiĐặtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tìmKiếmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,14 +52,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hướngDẫnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblAdmin = new System.Windows.Forms.Label();
-            this.btnThongKe = new System.Windows.Forms.Button();
-            this.btnTraCuu = new System.Windows.Forms.Button();
-            this.btnCaiDat = new System.Windows.Forms.Button();
-            this.btnQLDichVu = new System.Windows.Forms.Button();
-            this.btnChupAnh = new System.Windows.Forms.Button();
-            this.btnGiaTienQC = new System.Windows.Forms.Button();
-            this.btnDangKy = new System.Windows.Forms.Button();
-            this.btnGiaHan = new System.Windows.Forms.Button();
             this.picBoxAdmin = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -73,6 +73,149 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(112, 679);
             this.panel1.TabIndex = 30;
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnThongKe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnThongKe.FlatAppearance.BorderSize = 0;
+            this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongKe.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnThongKe.Image = ((System.Drawing.Image)(resources.GetObject("btnThongKe.Image")));
+            this.btnThongKe.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnThongKe.Location = new System.Drawing.Point(9, 506);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Size = new System.Drawing.Size(95, 95);
+            this.btnThongKe.TabIndex = 22;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnThongKe.UseVisualStyleBackColor = false;
+            // 
+            // btnTraCuu
+            // 
+            this.btnTraCuu.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnTraCuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnTraCuu.FlatAppearance.BorderSize = 0;
+            this.btnTraCuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTraCuu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTraCuu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnTraCuu.Image = ((System.Drawing.Image)(resources.GetObject("btnTraCuu.Image")));
+            this.btnTraCuu.Location = new System.Drawing.Point(59, 607);
+            this.btnTraCuu.Name = "btnTraCuu";
+            this.btnTraCuu.Size = new System.Drawing.Size(44, 66);
+            this.btnTraCuu.TabIndex = 16;
+            this.btnTraCuu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnTraCuu.UseVisualStyleBackColor = false;
+            // 
+            // btnCaiDat
+            // 
+            this.btnCaiDat.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnCaiDat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnCaiDat.FlatAppearance.BorderSize = 0;
+            this.btnCaiDat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCaiDat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCaiDat.ForeColor = System.Drawing.Color.White;
+            this.btnCaiDat.Image = ((System.Drawing.Image)(resources.GetObject("btnCaiDat.Image")));
+            this.btnCaiDat.Location = new System.Drawing.Point(10, 607);
+            this.btnCaiDat.Name = "btnCaiDat";
+            this.btnCaiDat.Size = new System.Drawing.Size(44, 66);
+            this.btnCaiDat.TabIndex = 23;
+            this.btnCaiDat.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnCaiDat.UseVisualStyleBackColor = false;
+            this.btnCaiDat.Click += new System.EventHandler(this.btnCaiDat_Click);
+            // 
+            // btnQLDichVu
+            // 
+            this.btnQLDichVu.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.btnQLDichVu.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnQLDichVu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnQLDichVu.FlatAppearance.BorderSize = 0;
+            this.btnQLDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnQLDichVu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQLDichVu.ForeColor = System.Drawing.Color.White;
+            this.btnQLDichVu.Image = ((System.Drawing.Image)(resources.GetObject("btnQLDichVu.Image")));
+            this.btnQLDichVu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnQLDichVu.Location = new System.Drawing.Point(9, 203);
+            this.btnQLDichVu.Name = "btnQLDichVu";
+            this.btnQLDichVu.Size = new System.Drawing.Size(95, 95);
+            this.btnQLDichVu.TabIndex = 18;
+            this.btnQLDichVu.Text = "Quản lý dịch vụ";
+            this.btnQLDichVu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnQLDichVu.UseVisualStyleBackColor = false;
+            // 
+            // btnChupAnh
+            // 
+            this.btnChupAnh.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnChupAnh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnChupAnh.FlatAppearance.BorderSize = 0;
+            this.btnChupAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnChupAnh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChupAnh.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnChupAnh.Image = ((System.Drawing.Image)(resources.GetObject("btnChupAnh.Image")));
+            this.btnChupAnh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnChupAnh.Location = new System.Drawing.Point(9, 102);
+            this.btnChupAnh.Name = "btnChupAnh";
+            this.btnChupAnh.Size = new System.Drawing.Size(95, 95);
+            this.btnChupAnh.TabIndex = 20;
+            this.btnChupAnh.Text = "Lịch hẹn chụp ảnh";
+            this.btnChupAnh.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnChupAnh.UseVisualStyleBackColor = false;
+            // 
+            // btnGiaTienQC
+            // 
+            this.btnGiaTienQC.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnGiaTienQC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGiaTienQC.FlatAppearance.BorderSize = 0;
+            this.btnGiaTienQC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGiaTienQC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGiaTienQC.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGiaTienQC.Image = ((System.Drawing.Image)(resources.GetObject("btnGiaTienQC.Image")));
+            this.btnGiaTienQC.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGiaTienQC.Location = new System.Drawing.Point(9, 405);
+            this.btnGiaTienQC.Name = "btnGiaTienQC";
+            this.btnGiaTienQC.Size = new System.Drawing.Size(95, 95);
+            this.btnGiaTienQC.TabIndex = 19;
+            this.btnGiaTienQC.Text = "Giá tiền quảng cáo";
+            this.btnGiaTienQC.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnGiaTienQC.UseVisualStyleBackColor = false;
+            // 
+            // btnDangKy
+            // 
+            this.btnDangKy.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnDangKy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnDangKy.FlatAppearance.BorderSize = 0;
+            this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDangKy.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangKy.ForeColor = System.Drawing.Color.White;
+            this.btnDangKy.Image = ((System.Drawing.Image)(resources.GetObject("btnDangKy.Image")));
+            this.btnDangKy.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnDangKy.Location = new System.Drawing.Point(9, 1);
+            this.btnDangKy.Name = "btnDangKy";
+            this.btnDangKy.Size = new System.Drawing.Size(95, 95);
+            this.btnDangKy.TabIndex = 17;
+            this.btnDangKy.Text = "Phiếu đăng ký";
+            this.btnDangKy.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnDangKy.UseVisualStyleBackColor = false;
+            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
+            // 
+            // btnGiaHan
+            // 
+            this.btnGiaHan.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnGiaHan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnGiaHan.FlatAppearance.BorderSize = 0;
+            this.btnGiaHan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGiaHan.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGiaHan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnGiaHan.Image = ((System.Drawing.Image)(resources.GetObject("btnGiaHan.Image")));
+            this.btnGiaHan.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnGiaHan.Location = new System.Drawing.Point(9, 304);
+            this.btnGiaHan.Name = "btnGiaHan";
+            this.btnGiaHan.Size = new System.Drawing.Size(95, 95);
+            this.btnGiaHan.TabIndex = 21;
+            this.btnGiaHan.Text = "Gia hạn dịch vụ ";
+            this.btnGiaHan.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.btnGiaHan.UseVisualStyleBackColor = false;
             // 
             // đăngXuấtToolStripMenuItem
             // 
@@ -179,148 +322,6 @@
             this.lblAdmin.TabIndex = 28;
             this.lblAdmin.Text = "admin";
             // 
-            // btnThongKe
-            // 
-            this.btnThongKe.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnThongKe.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnThongKe.FlatAppearance.BorderSize = 0;
-            this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThongKe.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThongKe.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnThongKe.Image = ((System.Drawing.Image)(resources.GetObject("btnThongKe.Image")));
-            this.btnThongKe.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnThongKe.Location = new System.Drawing.Point(9, 506);
-            this.btnThongKe.Name = "btnThongKe";
-            this.btnThongKe.Size = new System.Drawing.Size(95, 95);
-            this.btnThongKe.TabIndex = 22;
-            this.btnThongKe.Text = "Thống kê";
-            this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnThongKe.UseVisualStyleBackColor = false;
-            // 
-            // btnTraCuu
-            // 
-            this.btnTraCuu.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnTraCuu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnTraCuu.FlatAppearance.BorderSize = 0;
-            this.btnTraCuu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTraCuu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTraCuu.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnTraCuu.Image = ((System.Drawing.Image)(resources.GetObject("btnTraCuu.Image")));
-            this.btnTraCuu.Location = new System.Drawing.Point(59, 607);
-            this.btnTraCuu.Name = "btnTraCuu";
-            this.btnTraCuu.Size = new System.Drawing.Size(44, 66);
-            this.btnTraCuu.TabIndex = 16;
-            this.btnTraCuu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnTraCuu.UseVisualStyleBackColor = false;
-            // 
-            // btnCaiDat
-            // 
-            this.btnCaiDat.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnCaiDat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnCaiDat.FlatAppearance.BorderSize = 0;
-            this.btnCaiDat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCaiDat.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaiDat.ForeColor = System.Drawing.Color.White;
-            this.btnCaiDat.Image = ((System.Drawing.Image)(resources.GetObject("btnCaiDat.Image")));
-            this.btnCaiDat.Location = new System.Drawing.Point(10, 607);
-            this.btnCaiDat.Name = "btnCaiDat";
-            this.btnCaiDat.Size = new System.Drawing.Size(44, 66);
-            this.btnCaiDat.TabIndex = 23;
-            this.btnCaiDat.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnCaiDat.UseVisualStyleBackColor = false;
-            // 
-            // btnQLDichVu
-            // 
-            this.btnQLDichVu.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.btnQLDichVu.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnQLDichVu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnQLDichVu.FlatAppearance.BorderSize = 0;
-            this.btnQLDichVu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnQLDichVu.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQLDichVu.ForeColor = System.Drawing.Color.White;
-            this.btnQLDichVu.Image = ((System.Drawing.Image)(resources.GetObject("btnQLDichVu.Image")));
-            this.btnQLDichVu.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnQLDichVu.Location = new System.Drawing.Point(9, 203);
-            this.btnQLDichVu.Name = "btnQLDichVu";
-            this.btnQLDichVu.Size = new System.Drawing.Size(95, 95);
-            this.btnQLDichVu.TabIndex = 18;
-            this.btnQLDichVu.Text = "Quản lý dịch vụ";
-            this.btnQLDichVu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnQLDichVu.UseVisualStyleBackColor = false;
-            // 
-            // btnChupAnh
-            // 
-            this.btnChupAnh.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnChupAnh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnChupAnh.FlatAppearance.BorderSize = 0;
-            this.btnChupAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChupAnh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChupAnh.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnChupAnh.Image = ((System.Drawing.Image)(resources.GetObject("btnChupAnh.Image")));
-            this.btnChupAnh.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnChupAnh.Location = new System.Drawing.Point(9, 102);
-            this.btnChupAnh.Name = "btnChupAnh";
-            this.btnChupAnh.Size = new System.Drawing.Size(95, 95);
-            this.btnChupAnh.TabIndex = 20;
-            this.btnChupAnh.Text = "Lịch hẹn chụp ảnh";
-            this.btnChupAnh.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnChupAnh.UseVisualStyleBackColor = false;
-            // 
-            // btnGiaTienQC
-            // 
-            this.btnGiaTienQC.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnGiaTienQC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnGiaTienQC.FlatAppearance.BorderSize = 0;
-            this.btnGiaTienQC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGiaTienQC.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGiaTienQC.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGiaTienQC.Image = ((System.Drawing.Image)(resources.GetObject("btnGiaTienQC.Image")));
-            this.btnGiaTienQC.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGiaTienQC.Location = new System.Drawing.Point(9, 405);
-            this.btnGiaTienQC.Name = "btnGiaTienQC";
-            this.btnGiaTienQC.Size = new System.Drawing.Size(95, 95);
-            this.btnGiaTienQC.TabIndex = 19;
-            this.btnGiaTienQC.Text = "Giá tiền quảng cáo";
-            this.btnGiaTienQC.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGiaTienQC.UseVisualStyleBackColor = false;
-            // 
-            // btnDangKy
-            // 
-            this.btnDangKy.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnDangKy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnDangKy.FlatAppearance.BorderSize = 0;
-            this.btnDangKy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDangKy.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangKy.ForeColor = System.Drawing.Color.White;
-            this.btnDangKy.Image = ((System.Drawing.Image)(resources.GetObject("btnDangKy.Image")));
-            this.btnDangKy.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDangKy.Location = new System.Drawing.Point(9, 1);
-            this.btnDangKy.Name = "btnDangKy";
-            this.btnDangKy.Size = new System.Drawing.Size(95, 95);
-            this.btnDangKy.TabIndex = 17;
-            this.btnDangKy.Text = "Phiếu đăng ký";
-            this.btnDangKy.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnDangKy.UseVisualStyleBackColor = false;
-            this.btnDangKy.Click += new System.EventHandler(this.btnDangKy_Click);
-            // 
-            // btnGiaHan
-            // 
-            this.btnGiaHan.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnGiaHan.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnGiaHan.FlatAppearance.BorderSize = 0;
-            this.btnGiaHan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGiaHan.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGiaHan.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGiaHan.Image = ((System.Drawing.Image)(resources.GetObject("btnGiaHan.Image")));
-            this.btnGiaHan.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnGiaHan.Location = new System.Drawing.Point(9, 304);
-            this.btnGiaHan.Name = "btnGiaHan";
-            this.btnGiaHan.Size = new System.Drawing.Size(95, 95);
-            this.btnGiaHan.TabIndex = 21;
-            this.btnGiaHan.Text = "Gia hạn dịch vụ ";
-            this.btnGiaHan.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.btnGiaHan.UseVisualStyleBackColor = false;
-            // 
             // picBoxAdmin
             // 
             this.picBoxAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -336,7 +337,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(838, 703);
+            this.ClientSize = new System.Drawing.Size(984, 701);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.picBoxAdmin);
             this.Controls.Add(this.menuStrip1);
@@ -344,7 +345,7 @@
             this.IsMdiContainer = true;
             this.MaximizeBox = false;
             this.Name = "FormHome";
-            this.Text = "FormHome";
+            this.Text = "Phần Mềm Quản Lý Địa Ốc";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
@@ -352,7 +353,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAdmin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

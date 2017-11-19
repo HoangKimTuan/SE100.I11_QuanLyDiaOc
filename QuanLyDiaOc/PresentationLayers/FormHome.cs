@@ -30,5 +30,16 @@ namespace QuanLyDiaOc.PresentationLayers
             formRegistration.MdiParent = this;
             formRegistration.Show();
         }
+
+        private void btnCaiDat_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            FormSetting formSetting = new FormSetting();
+            formSetting.MdiParent = this;
+            formSetting.Show();
+        }
     }
 }

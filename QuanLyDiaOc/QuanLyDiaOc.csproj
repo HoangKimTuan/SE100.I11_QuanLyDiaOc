@@ -52,11 +52,13 @@
     <Compile Include="BusinesLogicLayers\LoginBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateTypeBLL.cs" />
+    <Compile Include="BusinesLogicLayers\SettingBLL.cs" />
     <Compile Include="DataAccessLayers\Connection.cs" />
     <Compile Include="DataAccessLayers\CustomerDAL.cs" />
     <Compile Include="DataAccessLayers\LoginDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateTypeDAL.cs" />
+    <Compile Include="DataAccessLayers\SettingDAL.cs" />
     <Compile Include="DataTransferObject\CustomerDTO.cs" />
     <Compile Include="DataTransferObject\RealEstateDTO.cs" />
     <Compile Include="PresentationLayers\FormConfig.cs">
@@ -83,6 +85,12 @@
     <Compile Include="PresentationLayers\FormRegistration.Designer.cs">
       <DependentUpon>FormRegistration.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresentationLayers\FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayers\FormSetting.Designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="PresentationLayers\FormConfig.resx">
@@ -96,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayers\FormRegistration.resx">
       <DependentUpon>FormRegistration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayers\FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
