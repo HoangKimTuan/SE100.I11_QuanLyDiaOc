@@ -18,12 +18,17 @@ namespace QuanLyDiaOc.BusinesLogicLayers
             return userDAL.GetListUser();
         }
 
+        public DataTable CheckUser(String name)
+        {
+            return userDAL.CheckUser(name);
+        }
+
         public bool InsertUser(UserDTO userDTO)
         {
             return userDAL.InsertUser(userDTO);
         }
 
-        public DataTable UpdateUser(UserDTO userDTO)
+        public bool UpdateUser(UserDTO userDTO)
         {
             return userDAL.UpdateUser(userDTO);
         }

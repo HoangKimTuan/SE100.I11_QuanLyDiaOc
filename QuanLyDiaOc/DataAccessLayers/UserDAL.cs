@@ -22,12 +22,39 @@ namespace QuanLyDiaOc.DataAccessLayers
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlAdapter = new SqlDataAdapter(sqlCommand);
                 sqlAdapter.Fill(data);
-                CloseConnect();
                 return data;
             }
             catch
             {
                 return null;
+            }
+            finally
+            {
+                CloseConnect();
+            }
+        }
+
+        public DataTable CheckUser(String name)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_NguoiDung_KiemTra";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@ten", name));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+            finally
+            {
+                CloseConnect();
             }
         }
 
@@ -43,34 +70,34 @@ namespace QuanLyDiaOc.DataAccessLayers
                 sqlCommand.Parameters.Add(new SqlParameter("@mk", userDTO.MatKhau));
                 sqlCommand.Parameters.Add(new SqlParameter("@malnd", userDTO.MaLoaiNguoiDung));
                 sqlCommand.ExecuteNonQuery();
-                CloseConnect();
                 return true;
             }
             catch
             {
                 return false;
             }
+            finally
+            {
+                CloseConnect();
+            }
         }
 
-        public DataTable UpdateUser(UserDTO userDTO)
+        public bool UpdateUser(UserDTO userDTO)
         {
             try
             {
                 OpenConnect();
-                DataTable data = new DataTable();
                 string store = "sp_NguoiDung_Sua";
                 sqlCommand = new SqlCommand(store, connect);
                 sqlCommand.CommandType = CommandType.StoredProcedure;
                 sqlCommand.Parameters.Add(new SqlParameter("@ten", userDTO.TenNguoiDung));
                 sqlCommand.Parameters.Add(new SqlParameter("@mk", userDTO.MatKhau));
                 sqlCommand.ExecuteNonQuery();
-                sqlAdapter = new SqlDataAdapter(sqlCommand);
-                sqlAdapter.Fill(data);
-                return data;
+                return true;
             }
             catch
             {
-                return null;
+                return false;
             }
             finally
             {

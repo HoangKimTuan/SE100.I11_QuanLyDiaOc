@@ -89,23 +89,37 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void btn_LuuMK_Click(object sender, EventArgs e)
         {
-            if (txtMKMoi.Text.ToString().Equals(txtXacNhanMK.Text.ToString()) && txtMKMoi.Text.Trim().Length >= 6)
+            if (userBLL.CheckUser(txtUser.Text.ToString()).Rows.Count > 0)
             {
-                UserDTO userDTO = new UserDTO(txtUser.Text.ToString(), txtMKMoi.Text.ToString());
-                if (userBLL.UpdateUser(userDTO).Rows.Count > 0)
+                if (txtMKMoi.Text.Trim().Length >= 6)
                 {
-                    MessageBox.Show("Sửa người dùng thành công");
-                    dgvTaiKhoan.DataSource = userBLL.GetListUser();
-                    userId = "";
+                    if (txtMKMoi.Text.ToString().Equals(txtXacNhanMK.Text.ToString()))
+                    {
+                        UserDTO userDTO = new UserDTO(txtUser.Text.ToString(), txtMKMoi.Text.ToString());
+                        if (userBLL.UpdateUser(userDTO))
+                        {
+                            MessageBox.Show("Sửa tài khoản thành công");
+                            dgvTaiKhoan.DataSource = userBLL.GetListUser();
+                            userId = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Sửa tài khoản thất bại");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu xác nhận khác với mật khẩu mới");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Tài khoản không tồn tại");
+                    MessageBox.Show("Mật khẩu không được nhỏ hơn 6 ký tự");
                 }
             }
             else
             {
-                MessageBox.Show("Mật khẩu không được trùng nhau và phải từ 6 ký tự trở lên");
+                MessageBox.Show("Tài khoản không tồn tại");
             }
         }
 
@@ -113,21 +127,35 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (checkInsertUser)
             {
-                UserDTO userDTO = new UserDTO(txtTaiKhoan.Text.ToString(), txtMatKhau.Text.ToString(), cbChucVu.SelectedValue.ToString());
-                if (userBLL.InsertUser(userDTO))
+                if (userBLL.CheckUser(txtTaiKhoan.Text.ToString()).Rows.Count == 0)
                 {
-                    MessageBox.Show("Thêm người dùng thành công");
-                    dgvTaiKhoan.DataSource = userBLL.GetListUser();
-                    userId = "";
+                    if (txtMatKhau.Text.Trim().Length >= 6)
+                    {
+                        UserDTO userDTO = new UserDTO(txtTaiKhoan.Text.ToString(), txtMatKhau.Text.ToString(), cbChucVu.SelectedValue.ToString());
+                        if (userBLL.InsertUser(userDTO))
+                        {
+                            MessageBox.Show("Thêm tài khoản thành công");
+                            dgvTaiKhoan.DataSource = userBLL.GetListUser();
+                            userId = "";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm tài khoản thất bại");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mật khẩu không được nhỏ hơn 6 ký tự");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Thêm người dùng thất bại");
+                    MessageBox.Show("Tài khoản đã tồn tại");
                 }
             }
             else
             {
-                MessageBox.Show("Vui lòng kiểm tra lại thông tin người dùng");
+                MessageBox.Show("Vui lòng kiểm tra lại thông tin tài khoản");
             }
         }
 
@@ -135,7 +163,7 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             if (userId == "")
             {
-                MessageBox.Show("Làm ơn chọn người dùng muốn xóa");
+                MessageBox.Show("Làm ơn chọn tài khoản muốn xóa");
             }
             else
             {
@@ -144,13 +172,13 @@ namespace QuanLyDiaOc.PresentationLayers
                 {
                     if (userBLL.DeleteUser(userId))
                     {
-                        MessageBox.Show("Xóa khách hàng thành công");
+                        MessageBox.Show("Xóa tài khoản thành công");
                         dgvTaiKhoan.DataSource = userBLL.GetListUser();
                         userId = "";
                     }
                     else
                     {
-                        MessageBox.Show("Xóa khách hàng thất bại");
+                        MessageBox.Show("Xóa tài khoản thất bại");
                     }
                 }
             }

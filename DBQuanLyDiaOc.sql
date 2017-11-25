@@ -160,6 +160,13 @@ AS
 	SELECT MaNguoiDung, TenNguoiDung, LoaiNguoiDung FROM NguoiDung, LoaiNguoiDung WHERE NguoiDung.MaLoaiNguoiDung = LoaiNguoiDung.MaLoaiNguoiDung
 GO
 
+CREATE PROC sp_NguoiDung_KiemTra
+@ten nvarchar(30)
+
+AS
+	SELECT * FROM NguoiDung WHERE TenNguoiDung=@ten
+GO
+
 CREATE PROC sp_NguoiDung_Them
 @ten nvarchar(30),
 @mk nvarchar(25),
@@ -174,15 +181,7 @@ CREATE PROC sp_NguoiDung_Sua
 @mk nvarchar(25)
 
 AS
-	IF (SELECT COUNT(*) FROM NguoiDung WHERE TenNguoiDung=@ten) > 0
-		BEGIN
-			SELECT * FROM NguoiDung WHERE TenNguoiDung=@ten
-			UPDATE NguoiDung SET MatKhau=@mk WHERE TenNguoiDung=@ten
-		END
-	ELSE
-		BEGIN
-			SELECT * FROM NguoiDung WHERE TenNguoiDung=@ten
-		END
+	UPDATE NguoiDung SET MatKhau=@mk WHERE TenNguoiDung=@ten
 GO
 
 CREATE PROC sp_NguoiDung_Xoa
