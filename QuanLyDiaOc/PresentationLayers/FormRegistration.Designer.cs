@@ -30,7 +30,6 @@
         {
             this.tabCtrlPhieuDangKy = new System.Windows.Forms.TabControl();
             this.tabPageKhachHang = new System.Windows.Forms.TabPage();
-            this.btnThemMoi = new System.Windows.Forms.Button();
             this.dgvKhachHang = new System.Windows.Forms.DataGridView();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,7 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.gbthongtinkhachhang = new System.Windows.Forms.GroupBox();
+            this.txtNamSinh = new System.Windows.Forms.ComboBox();
             this.lblNamSinh = new System.Windows.Forms.Label();
             this.rbNu = new System.Windows.Forms.RadioButton();
             this.rbNam = new System.Windows.Forms.RadioButton();
@@ -154,7 +154,6 @@
             this.lblKH = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtNamSinh = new System.Windows.Forms.ComboBox();
             this.tabCtrlPhieuDangKy.SuspendLayout();
             this.tabPageKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
@@ -191,7 +190,6 @@
             // tabPageKhachHang
             // 
             this.tabPageKhachHang.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.tabPageKhachHang.Controls.Add(this.btnThemMoi);
             this.tabPageKhachHang.Controls.Add(this.dgvKhachHang);
             this.tabPageKhachHang.Controls.Add(this.panel1);
             this.tabPageKhachHang.Controls.Add(this.label1);
@@ -205,17 +203,6 @@
             this.tabPageKhachHang.Size = new System.Drawing.Size(963, 554);
             this.tabPageKhachHang.TabIndex = 0;
             this.tabPageKhachHang.Text = "Thông tin khách hàng";
-            // 
-            // btnThemMoi
-            // 
-            this.btnThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThemMoi.Location = new System.Drawing.Point(6, 365);
-            this.btnThemMoi.Name = "btnThemMoi";
-            this.btnThemMoi.Size = new System.Drawing.Size(85, 28);
-            this.btnThemMoi.TabIndex = 24;
-            this.btnThemMoi.Text = "Thêm mới";
-            this.btnThemMoi.UseVisualStyleBackColor = true;
-            this.btnThemMoi.Click += new System.EventHandler(this.btnThemMoi_Click);
             // 
             // dgvKhachHang
             // 
@@ -237,7 +224,7 @@
             this.dgvKhachHang.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvKhachHang.Size = new System.Drawing.Size(544, 275);
             this.dgvKhachHang.TabIndex = 23;
-            this.dgvKhachHang.SelectionChanged += new System.EventHandler(this.dataGrid_KH_SelectionChanged);
+            this.dgvKhachHang.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachHang_CellClick);
             // 
             // MaKH
             // 
@@ -333,9 +320,9 @@
             // btnThem
             // 
             this.btnThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThem.Location = new System.Drawing.Point(97, 365);
+            this.btnThem.Location = new System.Drawing.Point(12, 365);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(88, 28);
+            this.btnThem.Size = new System.Drawing.Size(90, 28);
             this.btnThem.TabIndex = 5;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
@@ -344,9 +331,9 @@
             // btnXoa
             // 
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoa.Location = new System.Drawing.Point(191, 365);
+            this.btnXoa.Location = new System.Drawing.Point(118, 365);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(69, 28);
+            this.btnXoa.Size = new System.Drawing.Size(99, 28);
             this.btnXoa.TabIndex = 6;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
@@ -355,9 +342,9 @@
             // btnSua
             // 
             this.btnSua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnSua.Location = new System.Drawing.Point(266, 365);
+            this.btnSua.Location = new System.Drawing.Point(236, 365);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(68, 28);
+            this.btnSua.Size = new System.Drawing.Size(98, 28);
             this.btnSua.TabIndex = 7;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
@@ -392,6 +379,15 @@
             this.gbthongtinkhachhang.TabIndex = 13;
             this.gbthongtinkhachhang.TabStop = false;
             this.gbthongtinkhachhang.Text = "Thông tin cá nhân";
+            // 
+            // txtNamSinh
+            // 
+            this.txtNamSinh.FormattingEnabled = true;
+            this.txtNamSinh.Location = new System.Drawing.Point(90, 133);
+            this.txtNamSinh.Name = "txtNamSinh";
+            this.txtNamSinh.Size = new System.Drawing.Size(208, 26);
+            this.txtNamSinh.TabIndex = 2;
+            this.txtNamSinh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ChiNhapSo_Cmb);
             // 
             // lblNamSinh
             // 
@@ -757,7 +753,6 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin địa ốc";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // lblDiaChiDO
             // 
@@ -1514,15 +1509,6 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Phiếu đăng ký bán địa ốc";
             // 
-            // txtNamSinh
-            // 
-            this.txtNamSinh.FormattingEnabled = true;
-            this.txtNamSinh.Location = new System.Drawing.Point(90, 133);
-            this.txtNamSinh.Name = "txtNamSinh";
-            this.txtNamSinh.Size = new System.Drawing.Size(208, 26);
-            this.txtNamSinh.TabIndex = 2;
-            this.txtNamSinh.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ChiNhapSo_Cmb);
-            // 
             // FormRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1691,7 +1677,6 @@
         private System.Windows.Forms.RadioButton rbNu;
         private System.Windows.Forms.RadioButton rbNam;
         private System.Windows.Forms.Label lblNamSinh;
-        private System.Windows.Forms.Button btnThemMoi;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaDiaOc;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiDiaOc;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaChiDO;

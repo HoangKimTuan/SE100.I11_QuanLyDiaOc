@@ -22,6 +22,7 @@ namespace QuanLyDiaOc.PresentationLayers
         private string customerId;
         private string customerName;
         private bool checkInsertCustommer;
+        private bool[] isChecked;
 
         public FormRegistration()
         {
@@ -30,6 +31,7 @@ namespace QuanLyDiaOc.PresentationLayers
             realEstateBLL = new RealEstateBLL();
             RealEstateTypeBLL = new RealEstateTypeBLL();
             settingBLL = new SettingBLL();
+            isChecked = new bool[3];
         }
 
         private enum EnumQuangCao
@@ -37,20 +39,6 @@ namespace QuanLyDiaOc.PresentationLayers
             QC_ToBuom = 0,
             QC_Bang = 1,
             QC_Bao = 2
-        }
-
-        private void EnableAdd()
-        {
-            btnThem.Enabled = true;
-            btnSua.Enabled = false;
-            btnXoa.Enabled = false;
-        }
-
-        private void EnableEdit()
-        {
-            btnThem.Enabled = false;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
         }
 
         private void Empty()
@@ -64,8 +52,14 @@ namespace QuanLyDiaOc.PresentationLayers
             txtHoTen.Focus();
         }
 
-        private bool[] isChecked = new bool[3];
-
+        private bool CheckEmpty()
+        {
+            if (txtHoTen.Text.ToString() == "" || txtNamSinh.Text.ToString() == "" || txtDiaChi.Text.ToString() == "" || txtSDT.Text.ToString() == "" || txtEmail.Text.ToString() == "")
+            {
+                return true;
+            }
+            return false;
+        }
 
         private void PhieuDangKy_Load(object sender, EventArgs e)
         {
@@ -75,7 +69,6 @@ namespace QuanLyDiaOc.PresentationLayers
             cbLoaiDiaOc.DisplayMember = "TenLoaiDO";
             cbLoaiDiaOc.ValueMember = "MaLoaiDO";
             Empty();
-            EnableAdd();
 
             int minAge = Int32.Parse(settingBLL.GetMinAge());
             int maxAge = Int32.Parse(settingBLL.GetMaxAge());
@@ -85,7 +78,7 @@ namespace QuanLyDiaOc.PresentationLayers
             }
         }
 
-        private void KiemTraTab()
+        private void tabCtrlPhieuDangKy_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabCtrlPhieuDangKy.SelectedIndex == 0)
                 return;
@@ -105,11 +98,6 @@ namespace QuanLyDiaOc.PresentationLayers
                 return;
             }
         }
-
-        private void tabCtrlPhieuDangKy_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            KiemTraTab();
-        }
         private bool KiemTraSoKyTuNhapVao(int max, string str)
         {
             if (str.Length <= max)
@@ -119,128 +107,160 @@ namespace QuanLyDiaOc.PresentationLayers
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (checkInsertCustommer)
+            if (CheckEmpty())
             {
-                string gioiTinh = "Nam";
-                if (rbNu.Checked)
-                    gioiTinh = "Nữ";
-
-                CustomerDTO customerDTO = new CustomerDTO(txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
-
-                try
-                {
-                    if (customerBLL.InsertCustomer(customerDTO))
-                    {
-                        MessageBox.Show("Thêm khách hàng thành công");
-                        dgvKhachHang.DataSource = customerBLL.GetListCustomer();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Thêm khách hàng thất bại");
-                    }
-                }
-                catch
-                {
-                }
+                MessageBox.Show("Làm ơn điền đầy đủ thông tin khách hàng");
             }
             else
             {
-                MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
-            }
-        }
+                if (checkInsertCustommer)
+                {
+                    string gioiTinh = "Nam";
+                    if (rbNu.Checked)
+                        gioiTinh = "Nữ";
 
+                    CustomerDTO customerDTO = new CustomerDTO(txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
 
-        private void dataGrid_KH_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvKhachHang.SelectedRows.Count <= 0)
-            {
-                return;
-            }
-            try
-            {
-                int i = -1;
-                i = dgvKhachHang.CurrentRow.Index;
-                customerId = dgvKhachHang.Rows[i].Cells["MaKH"].Value.ToString();
-                customerName = dgvKhachHang.Rows[i].Cells["TenKH"].Value.ToString();
-                txtHoTen.Text = dgvKhachHang.Rows[i].Cells["TenKH"].Value.ToString();
-                String gioiTinh = dgvKhachHang.Rows[i].Cells["GioiTinh"].Value.ToString();
-                if (gioiTinh == "Nam")
-                    rbNam.Checked = true;
+                    try
+                    {
+                        if (customerBLL.InsertCustomer(customerDTO))
+                        {
+                            MessageBox.Show("Thêm khách hàng thành công");
+                            dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Thêm khách hàng thất bại");
+                        }
+                    }
+                    catch
+                    {
+                    }
+                }
                 else
-                    rbNu.Checked = true;
-                txtNamSinh.Text = dgvKhachHang.Rows[i].Cells["NamSinh"].Value.ToString();
-                txtDiaChi.Text = dgvKhachHang.Rows[i].Cells["DiaChi"].Value.ToString();
-                txtSDT.Text = dgvKhachHang.Rows[i].Cells["SDT"].Value.ToString();
-                txtEmail.Text = dgvKhachHang.Rows[i].Cells["Email"].Value.ToString();
-
-                EnableEdit();
+                {
+                    MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
+                }
             }
-            catch { }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa thông tin khác hàng " + customerId, "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (dialogResult == DialogResult.Yes)
+            if (customerId == "")
             {
-                if (customerBLL.DeleteCustomer(customerId))
+                MessageBox.Show("Làm ơn chọn khách hàng muốn xóa");
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc muốn xóa thông tin khác hàng " + customerId, "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    MessageBox.Show("Xóa khách hàng thành công");
-                    dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                    if (customerBLL.DeleteCustomer(customerId))
+                    {
+                        MessageBox.Show("Xóa khách hàng thành công");
+                        dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                        Empty();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa khách hàng thất bại");
+                    }
                 }
-                else
+                else if (dialogResult == DialogResult.No)
                 {
-                    MessageBox.Show("Xóa khách hàng thất bại");
+                    //do something else
                 }
             }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-            }
-
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (checkInsertCustommer)
+            if (customerId == "")
             {
-                string gioiTinh = "Nam";
-                if (rbNu.Checked)
-                    gioiTinh = "Nữ";
-
-                CustomerDTO customerDTO = new CustomerDTO(customerId, txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
-
-                try
-                {
-                    if (customerBLL.UpdateCustomer(customerDTO))
-                    {
-                        MessageBox.Show("Sửa khách hàng thành công");
-                        dgvKhachHang.DataSource = customerBLL.GetListCustomer();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Sửa khách hàng thất bại");
-                    }
-                }
-                catch
-                {
-                }
+                MessageBox.Show("Làm ơn chọn khách hàng muốn sửa");
             }
             else
             {
-                MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
-            }
-        }
+                if (CheckEmpty())
+                {
+                    MessageBox.Show("Làm ơn điền đầy đủ thông tin khách hàng");
+                }
+                else
+                {
+                    if (checkInsertCustommer)
+                    {
+                        string gioiTinh = "Nam";
+                        if (rbNu.Checked)
+                            gioiTinh = "Nữ";
 
-        private void btnThemMoi_Click(object sender, EventArgs e)
-        {
-            EnableAdd();
-            Empty();
+                        CustomerDTO customerDTO = new CustomerDTO(customerId, txtHoTen.Text, gioiTinh, Int32.Parse(txtNamSinh.Text.ToString()), txtDiaChi.Text, txtSDT.Text, txtEmail.Text);
+
+                        try
+                        {
+                            if (customerBLL.UpdateCustomer(customerDTO))
+                            {
+                                MessageBox.Show("Sửa khách hàng thành công");
+                                dgvKhachHang.DataSource = customerBLL.GetListCustomer();
+                                Empty();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Sửa khách hàng thất bại");
+                            }
+                        }
+                        catch
+                        {
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Làm ơn kiểm tra lại thông tin khách hàng");
+                    }
+                }
+            }
         }
 
         private void txtTimKiemKH_TextChanged(object sender, EventArgs e)
         {
             dgvKhachHang.DataSource = customerBLL.SearchCustomer(txtTimKiemKH.Text);
+        }
+
+        private void txtHoTen_TextChanged(object sender, EventArgs e)
+        {
+            Regex reg = new Regex(@"^([\w.'-_?@áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ ]+)$");
+            if (!reg.IsMatch(txtHoTen.Text))
+            {
+                lblHoTen.Text = "Tên không hợp lệ";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                lblHoTen.Text = "";
+                checkInsertCustommer = true;
+            }
+            if (!KiemTraSoKyTuNhapVao(100, txtHoTen.Text))
+            {
+                lblHoTen.Text = "Chỉ được nhập tối đa 100 kí tự!";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblHoTen.Text = "";
+            }
+            if (txtHoTen.Text.Trim() == "")
+            {
+                lblHoTen.Text = "Vui lòng nhập họ tên";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblHoTen.Text = "";
+            }
         }
 
         private void txtNamSinh_TextChanged(object sender, EventArgs e)
@@ -262,6 +282,66 @@ namespace QuanLyDiaOc.PresentationLayers
             else
             {
                 lblNamSinh.Text = "";
+                checkInsertCustommer = true;
+            }
+        }
+
+        private void txtDiaChi_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDiaChi.Text.Trim() == "")
+            {
+                lblDiaChi.Text = "Vui lòng nhập địa chỉ";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblDiaChi.Text = "";
+            }
+
+            //kiem tra neu chuoi vuot qua ki tu cho phep
+            if (!KiemTraSoKyTuNhapVao(200, txtDiaChi.Text))
+            {
+                lblDiaChi.Text = "Chỉ được nhập tối đa 200 kí tự!";
+                checkInsertCustommer = false;
+                return;
+            }
+            else
+            {
+                checkInsertCustommer = true;
+                lblDiaChi.Text = "";
+            }
+        }
+
+        private void txtSDT_TextChanged(object sender, EventArgs e)
+        {
+            Regex reg = new Regex(@"^[\d]{10,11}$");
+
+            if (!reg.IsMatch(txtSDT.Text))
+            {
+                lblDT.Text = "Số điện thoại phải 10 hoặc 11 số";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblDT.Text = "";
+                checkInsertCustommer = true;
+            }
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            Regex reg = new Regex(@"^[\w._%+-]+@[a-z]+\.[a-z]{2,6}$");
+
+            if (!reg.IsMatch(txtEmail.Text))
+            {
+                lblEmail.Text = "Email không đúng định dạng";
+                checkInsertCustommer = false;
+            }
+            else
+            {
+                lblEmail.Text = "";
                 checkInsertCustommer = true;
             }
         }
@@ -366,111 +446,11 @@ namespace QuanLyDiaOc.PresentationLayers
             {
                 this.Close();
             }
-
-
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void txtHoTen_TextChanged(object sender, EventArgs e)
-        {
-            Regex reg = new Regex(@"^([\w.'-_?@áàảãạăắằẳẵặâấầẩẫậđéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵ ]+)$");
-            if (!reg.IsMatch(txtHoTen.Text))
-            {
-                lblHoTen.Text = "Tên không hợp lệ";
-                checkInsertCustommer = false;
-                return;
-            }
-            else
-            {
-                lblHoTen.Text = "";
-                checkInsertCustommer = true;
-            }
-            if (!KiemTraSoKyTuNhapVao(100, txtHoTen.Text))
-            {
-                lblHoTen.Text = "Chỉ được nhập tối đa 100 kí tự!";
-                checkInsertCustommer = false;
-                return;
-            }
-            else
-            {
-                checkInsertCustommer = true;
-                lblHoTen.Text = "";
-            }
-            if (txtHoTen.Text.Trim() == "")
-            {
-                lblHoTen.Text = "Vui lòng nhập họ tên";
-                checkInsertCustommer = false;
-                return;
-            }
-            else
-            {
-                checkInsertCustommer = true;
-                lblHoTen.Text = "";
-            }
-        }
-
-        private void txtDiaChi_TextChanged(object sender, EventArgs e)
-        {
-            if (txtDiaChi.Text.Trim() == "")
-            {
-                lblDiaChi.Text = "Vui lòng nhập địa chỉ";
-                checkInsertCustommer = false;
-                return;
-            }
-            else
-            {
-                checkInsertCustommer = true;
-                lblDiaChi.Text = "";
-            }
-
-            //kiem tra neu chuoi vuot qua ki tu cho phep
-            if (!KiemTraSoKyTuNhapVao(200, txtDiaChi.Text))
-            {
-                lblDiaChi.Text = "Chỉ được nhập tối đa 200 kí tự!";
-                checkInsertCustommer = false;
-                return;
-            }
-            else
-            {
-                checkInsertCustommer = true;
-                lblDiaChi.Text = "";
-            }
-        }
-
-        private void txtSDT_TextChanged(object sender, EventArgs e)
-        {
-            Regex reg = new Regex(@"^[\d]{10,11}$");
-
-            if (!reg.IsMatch(txtSDT.Text))
-            {
-                lblDT.Text = "Số điện thoại phải 10 hoặc 11 số";
-                checkInsertCustommer = false;
-            }
-            else
-            {
-                lblDT.Text = "";
-                checkInsertCustommer = true;
-            }
-        }
-
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-            Regex reg = new Regex(@"^[\w._%+-]+@[a-z]+\.[a-z]{2,6}$");
-
-            if (!reg.IsMatch(txtEmail.Text))
-            {
-                lblEmail.Text = "Email không đúng định dạng";
-                checkInsertCustommer = false;
-            }
-            else
-            {
-                lblEmail.Text = "";
-                checkInsertCustommer = true;
-            }
         }
 
         private void txtDiaChiDO_TextChanged(object sender, EventArgs e)
@@ -655,11 +635,6 @@ namespace QuanLyDiaOc.PresentationLayers
                 e.Handled = true;
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void KhongNhapSo(object sender, KeyPressEventArgs e)
         {
             TextBox t = (TextBox)sender;
@@ -706,6 +681,30 @@ namespace QuanLyDiaOc.PresentationLayers
         {
             MessageBox.Show("Vui lòng chọn giá trị ở mũi tên bên cạnh");
             e.Handled = true;
+        }
+
+        private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    DataGridViewRow row = this.dgvKhachHang.Rows[e.RowIndex];
+                    customerId = row.Cells["MaKH"].Value.ToString();
+                    customerName = row.Cells["TenKH"].Value.ToString();
+                    txtHoTen.Text = row.Cells["TenKH"].Value.ToString();
+                    String gioiTinh = row.Cells["GioiTinh"].Value.ToString();
+                    if (gioiTinh == "Nam")
+                        rbNam.Checked = true;
+                    else
+                        rbNu.Checked = true;
+                    txtNamSinh.Text = row.Cells["NamSinh"].Value.ToString();
+                    txtDiaChi.Text = row.Cells["DiaChi"].Value.ToString();
+                    txtSDT.Text = row.Cells["SDT"].Value.ToString();
+                    txtEmail.Text = row.Cells["Email"].Value.ToString();
+                }
+                catch { }
+            }
         }
     }
 }

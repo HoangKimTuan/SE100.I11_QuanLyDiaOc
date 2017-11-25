@@ -99,7 +99,6 @@ namespace QuanLyDiaOc.PresentationLayers
                         if (userBLL.UpdateUser(userDTO))
                         {
                             MessageBox.Show("Sửa tài khoản thành công");
-                            dgvTaiKhoan.DataSource = userBLL.GetListUser();
                             userId = "";
                         }
                         else
