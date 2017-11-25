@@ -358,7 +358,7 @@ namespace QuanLyDiaOc.PresentationLayers
                 i = dgvDiaOc.CurrentRow.Index;
                 cbLoaiDiaOc.Text = dgvDiaOc.Rows[i].Cells["LoaiDiaOc"].Value.ToString();
                 txtDiaChiDO.Text = dgvDiaOc.Rows[i].Cells["DiaChiDO"].Value.ToString();
-                txtDTKV.Text = dgvDiaOc.Rows[i].Cells["DienTichKhuonVien"].Value.ToString();
+                txtDTKV.Text =  dgvDiaOc.Rows[i].Cells["DienTichKhuonVien"].Value.ToString();
                 txtDTSD.Text = dgvDiaOc.Rows[i].Cells["DienTichSuDung"].Value.ToString();
                 txtHuongNha.Text = dgvDiaOc.Rows[i].Cells["HuongNha"].Value.ToString();
                 txtViTri.Text = dgvDiaOc.Rows[i].Cells["ViTri"].Value.ToString();

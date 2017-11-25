@@ -22,6 +22,11 @@ namespace QuanLyDiaOc.BusinesLogicLayers
             return customerDAL.SearchCustomer(tuKhoa);
         }
 
+        public DataTable SearchCustomer(string makh, string tenkh, string diachi, string sdt)
+        {
+            return customerDAL.SearchCustomer(makh,tenkh,diachi,sdt);
+        }
+
         public bool InsertCustomer(CustomerDTO customer)
         {
             return customerDAL.InsertCustomer(customer);

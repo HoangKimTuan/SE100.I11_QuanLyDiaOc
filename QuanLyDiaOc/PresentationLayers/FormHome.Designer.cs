@@ -71,7 +71,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(112, 679);
+            this.panel1.Size = new System.Drawing.Size(112, 677);
             this.panel1.TabIndex = 30;
             // 
             // btnThongKe
@@ -107,6 +107,7 @@
             this.btnTraCuu.TabIndex = 16;
             this.btnTraCuu.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnTraCuu.UseVisualStyleBackColor = false;
+            this.btnTraCuu.Click += new System.EventHandler(this.btnTraCuu_Click);
             // 
             // btnCaiDat
             // 
@@ -216,6 +217,7 @@
             this.btnGiaHan.Text = "Gia hạn dịch vụ ";
             this.btnGiaHan.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnGiaHan.UseVisualStyleBackColor = false;
+            this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
@@ -302,7 +304,7 @@
             this.hướngDẫnToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(838, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(984, 24);
             this.menuStrip1.TabIndex = 29;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -353,6 +355,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoxAdmin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

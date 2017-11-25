@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace QuanLyDiaOc.DataTransferObject
+{
+    class RegistrationDTO
+    {
+        private string MaQCTrenBao { get; set; }
+        private string MaQCTrenBang { get; set; }
+        private string MaQCToBuom { get; set; }
+        private string MaDO { get; set; }
+        private string MaKH { get; set; }
+        private string SoPDK { get; set; }
+        private DateTime NgayDangKy { get; set; }
+        private DateTime NgayKetThuc { get; set; }
+        private int SoLanGiaHan { get; set; }
+
+        public RegistrationDTO()
+        {
+
+        }
+
+        public RegistrationDTO(string maDK, string maKH, string maDiaOc, DateTime ngayDangKy, DateTime ngayKetThuc, int soLanGiaHan)
+        {
+            MaDO = maDiaOc;
+            MaKH = maKH;
+            SoPDK = maDK;
+            NgayDangKy = ngayDangKy;
+            NgayKetThuc = ngayKetThuc;
+            SoLanGiaHan = soLanGiaHan;
+        }
+        public RegistrationDTO(string maQCTrenBao, string maQCTrenBang, string maQCToBuom, string maDiaOc, string maKH, string maDK, DateTime ngayDK, DateTime ngayKetThuc, int soLanGiaHan)
+        {
+            MaQCTrenBao = maQCTrenBao;
+            MaQCTrenBang = maQCTrenBang;
+            MaQCToBuom = maQCToBuom;
+            MaDO = maDiaOc;
+            MaKH = maKH;
+            SoPDK = maDK;
+            NgayDangKy = ngayDangKy;
+            NgayKetThuc = ngayKetThuc;
+            SoLanGiaHan = soLanGiaHan;
+        }
+
+    }
+}
