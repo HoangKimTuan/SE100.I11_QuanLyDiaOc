@@ -41,5 +41,28 @@ namespace QuanLyDiaOc.PresentationLayers
             formSetting.MdiParent = this;
             formSetting.Show();
         }
+
+        private void btnGiaHan_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            FormRenewal formRenewal = new FormRenewal();
+            formRenewal.MdiParent = this;
+            formRenewal.Show();
+
+        }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            FormSearch formSearch = new FormSearch();
+            formSearch.MdiParent = this;
+            formSearch.Show();
+        }
     }
 }

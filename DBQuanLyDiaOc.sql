@@ -2,7 +2,6 @@
 go
 use QuanLyDiaOc
 go
-
 create table KhachHang
 (
 	ID int identity(1,1) not null primary key clustered,
@@ -42,20 +41,22 @@ create table LoaiDiaOc
 create table PhieuDangKy
 (
 	SoPDK nchar(10) primary key not null,
-	NgayDangKy date not null,
-	NgayGioHenChup datetime,
-	NgayGioChupAnh datetime,
+	MaQCTrenBao nchar(10),
+	MaQCTrenBang nchar(10),
+	MaQCToBuom nchar(10),
 	MaDO nchar(10) not null,
+	MaKH nchar(10) not null,
+	NgayDangKy date,
+	NgayKetThuc date,
+	SoLanGiaHan int,
 )
 
 create table GiayTo 
 (
 	MaGiayTo nchar(10) primary key not null,
-	GiayPhepXayDung bit,
-	GiayPhepHoanCong bit,
-	GiayChungNhanSoHuuNha bit,
-	SoDo bit,
-	HopDongMuaBan bit,
+	MaDO nchar(10) not null,
+	TenGiayTO nvarchar(100),
+	NgayNhan date,
 )
 
 create table PhieuThu
@@ -210,6 +211,12 @@ AS
 	SELECT MaKH, TenKH, GioiTinh, NamSinh, DiaChi, SDT, Email FROM KhachHang
 GO
 
+CREATE PROC sp_KhachHang_LayDanhSachTen
+
+AS
+	SELECT MaKH, TenKH FROM KhachHang
+GO
+
 CREATE PROC sp_KhachHang_Them
 @ten nvarchar(100),
 @gioitinh nvarchar(3),
@@ -247,6 +254,16 @@ CREATE PROC sp_KhachHang_TimKiem
 
 AS
 	SELECT MaKH, TenKH, GioiTinh, NamSinh, DiaChi, SDT, Email FROM KhachHang WHERE TenKH LIKE '%'+ @tukhoa +'%'
+GO
+
+CREATE PROC sp_KhachHang_TimKiem_2
+@makh varchar(10),
+@tenkh nvarchar(100),
+@diachi nvarchar(1000),
+@sdt nvarchar(20)
+
+AS
+	SELECT MaKH, TenKH, GioiTinh, NamSinh, DiaChi, SDT, Email FROM KhachHang WHERE TenKH LIKE '%'+ @tenkh +'%' AND MaKH LIKE '%'+ @makh +'%' AND DiaChi LIKE '%'+ @diachi +'%'AND SDT LIKE '%'+ @sdt +'%'
 GO
 
 
@@ -347,7 +364,36 @@ AS
 	SELECT GiaTri FROM ThamSo WHERE TenThamSo=N'Mô tả quảng cáo'
 GO
 
+CREATE PROC sp_GiayTo_LayDanhSach
+@mado varchar(10)
 
+AS
+	SELECT *  FROM GiayTo WHERE MaDO=@mado
+GO
+
+CREATE PROC sp_DiaOc_TimKiem
+@mado varchar(10),
+@diachi nvarchar(200),
+@dientichtu numeric(18,2),
+@dientichden numeric(18,2),
+@giabantu money,
+@giabanden money
+AS
+	SELECT * FROM DiaOc 
+	WHERE
+	( (MaDO like CONCAT('%',@mado,'%') ))
+	and ( DiaChi like '%'+@diachi+'%')
+	and (((@giabanden = 0) and (GIABAN > @giabantu))or ((GIABAN > @giabantu) and (GIABAN < @giabanden)))
+	and (((@dientichden =0) and (DIENTICHKHUONVIEN > @dientichtu) )or ( (DIENTICHKHUONVIEN > @dientichtu) and (DIENTICHKHUONVIEN< @dientichden)))
+GO
+
+CREATE PROC sp_DangKy_LayThongTin
+@mado varchar(10),
+@makh varchar(10)
+
+AS
+	SELECT * FROM DANG_KY WHERE MAKH=@makh AND MADIAOC=@mado
+GO
 
 INSERT INTO NguoiDung VALUES('HoangKimTuan', '123456', 'LND001')
 INSERT INTO NguoiDung VALUES('HoangKimTuan', '12345678', 'LND002')
@@ -374,8 +420,10 @@ INSERT INTO ThamSo VALUES(N'Lãi suất gia hạn', '2.5')
 INSERT INTO ThamSo VALUES(N'Mô tả quảng cáo', '200')
 INSERT INTO ThamSo VALUES(N'Tuổi tối thiểu', '18')
 INSERT INTO ThamSo VALUES(N'Tuổi tối đa', '150')
-
-
+INSERT INTO GiayTo VALUES('GT0001','DO0001',N'Sổ đỏ','2017-04-04')
+INSERT INTO GiayTo VALUES('GT0002','DO0001',N'Giấy chứng nhận đất hoang','2017-04-04')
+INSERT INTO GiayTo VALUES('GT0003','DO0006',N'Sổ đỏ','2017-04-04')
+INSERT INTO GiayTo VALUES('GT0004','DO0006',N'Sổ đỏ','2017-04-04')
 
 alter table Bang
 add constraint FK_Bang_LoaiBang
@@ -428,9 +476,11 @@ foreign key (MaLoaiDiaOc)
 references LoaiDiaOc(MaLoaiDiaOc)
 
 alter table GiayTo
-add constraint FK_DiaOc_GiayTo
-foreign key (MaGiayTo)
+add constraint FK_GiayTo_DiaOc
+foreign key (MaDO)
 references DiaOc(MaDO)
+
+alter table GiayTo drop constraint FK_GiayTo_DiaOc
 
 ALTER TABLE KhachHang 
 ADD CONSTRAINT CK_KH_SDT 

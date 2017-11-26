@@ -32,5 +32,17 @@ namespace QuanLyDiaOc.BusinesLogicLayers
         {
             return realEstateDAL.DeleteRealEstate(maDO);
         }
+
+        public DataTable SearchRealEstate(string mado, string diachi, string dientichtu, string dientichden, string giabantu, string giabanden)
+        {
+            try
+            {
+                return realEstateDAL.SearchRealEstate(mado, diachi, dientichtu, dientichden, giabantu, giabanden);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

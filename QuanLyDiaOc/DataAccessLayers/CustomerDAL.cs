@@ -52,6 +52,30 @@ namespace QuanLyDiaOc.DataAccessLayers
             }
         }
 
+        public DataTable SearchCustomer(string makh, string tenkh, string diachi, string sdt)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_KhachHang_TimKiem_2";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@makh", makh));
+                sqlCommand.Parameters.Add(new SqlParameter("@tenkh", tenkh));
+                sqlCommand.Parameters.Add(new SqlParameter("@diachi", diachi));
+                sqlCommand.Parameters.Add(new SqlParameter("@sdt", sdt));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                CloseConnect();
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public bool InsertCustomer(CustomerDTO customerDTO)
         {
             try
