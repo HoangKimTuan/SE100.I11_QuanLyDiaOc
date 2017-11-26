@@ -254,8 +254,51 @@ CREATE PROC sp_DiaOc_LayDanhSach
 @makh varchar(10)
 
 AS
-	SELECT MaDO, TenLoaiDO, DiaChi, DienTichSuDung, DienTichKhuonVien, HuongNha, ViTri, MoTaChiTiet, GiaBan, TrangThai FROM DiaOc, LoaiDiaOc WHERE MaKH=@makh AND DiaOc.MaLoaiDO=LoaiDiaOc.MaLoaiDO
+	SELECT MaDO, TenLoaiDO, DiaChi, DienTichSuDung, DienTichKhuonVien, HuongNha, ViTri, MoTaChiTiet, GiaBan, HinhAnh, TrangThai FROM DiaOc, LoaiDiaOc WHERE MaKH=@makh AND DiaOc.MaLoaiDO=LoaiDiaOc.MaLoaiDO
 GO
+
+CREATE PROC sp_DiaOc_Them
+@makh varchar(10),
+@maldo varchar(10),
+@diachi nvarchar(200),
+@dtkv numeric(18,2),
+@dtsd numeric(18,2),
+@hn nvarchar(100),
+@vt nvarchar(100),
+@mota nvarchar(100),
+@giaban money,
+@ha bit,
+@tt nvarchar(50)
+
+AS
+	INSERT INTO DiaOc VALUES(@makh, @maldo, @diachi, @dtkv, @dtsd, @hn, @vt, @mota, @giaban, @ha, @tt)
+GO
+
+CREATE PROC sp_DiaOc_Sua
+@mado varchar(10),
+@makh varchar(10),
+@maldo varchar(10),
+@diachi nvarchar(200),
+@dtkv numeric(18,2),
+@dtsd numeric(18,2),
+@hn nvarchar(100),
+@vt nvarchar(100),
+@mota nvarchar(100),
+@giaban money,
+@ha bit,
+@tt nvarchar(50)
+
+AS
+	INSERT INTO DiaOc VALUES(@makh, @maldo, @diachi, @dtkv, @dtsd, @hn, @vt, @mota, @giaban, @ha, @tt)
+GO
+
+CREATE PROC sp_DiaOc_Xoa
+@mado varchar(10)
+
+AS
+	DELETE FROM DiaOc WHERE MaDO=@mado
+GO
+
 
 CREATE PROC sp_LoaiDiaOc_LayDanhSach
 
@@ -324,7 +367,7 @@ INSERT INTO DiaOc VALUES('KH0007', 'LDO001', N'Số 30 đường Vành Đai ĐHQ
 INSERT INTO DiaOc VALUES('KH0008', 'LDO002', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
 INSERT INTO DiaOc VALUES('KH0006', 'LDO001', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
 INSERT INTO DiaOc VALUES('KH0006', 'LDO002', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
-INSERT INTO DiaOc VALUES('KH0007', 'LDO001', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
+INSERT INTO DiaOc VALUES('KH0007', 'LDO001', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 0, N'Chưa bán')
 INSERT INTO DiaOc VALUES('KH0008', 'LDO001', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
 INSERT INTO DiaOc VALUES('KH0008', 'LDO003', N'Số 30 đường Vành Đai ĐHQG KP. Tân Lập TX. Dĩ An tỉnh Bình Dương', 30.02, 10.36, N'Đông', N'XXX', N'Đẹp rẻ bền không set rỉ bảo hành 2 năm', 30000000, 1, N'Chưa bán')
 INSERT INTO ThamSo VALUES(N'Lãi suất gia hạn', '2.5')

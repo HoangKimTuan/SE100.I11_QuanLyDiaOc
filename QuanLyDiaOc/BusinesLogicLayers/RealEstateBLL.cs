@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using QuanLyDiaOc.DataAccessLayers;
+using QuanLyDiaOc.DataTransferObject;
 
 namespace QuanLyDiaOc.BusinesLogicLayers
 {
@@ -14,7 +15,22 @@ namespace QuanLyDiaOc.BusinesLogicLayers
 
         public DataTable GetListRealEstate(string maKH)
         {
-            return realEstateDAL.getListRealEstate(maKH);
+            return realEstateDAL.GetListRealEstate(maKH);
+        }
+
+        public bool InsertRealEstate(RealEstateDTO realEstateDTO)
+        {
+            return realEstateDAL.InsertRealEstate(realEstateDTO);
+        }
+
+        public bool UpdateRealEstate(RealEstateDTO realEstateDTO)
+        {
+            return realEstateDAL.UpdateRealEstate(realEstateDTO);
+        }
+
+        public bool DeleteRealEstate(string maDO)
+        {
+            return realEstateDAL.DeleteRealEstate(maDO);
         }
     }
 }

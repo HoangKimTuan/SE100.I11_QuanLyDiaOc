@@ -66,16 +66,6 @@
             this.lHoten = new System.Windows.Forms.Label();
             this.tabPageDiaOc = new System.Windows.Forms.TabPage();
             this.dgvDiaOc = new System.Windows.Forms.DataGridView();
-            this.MaDiaOc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiDiaOc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiaChiDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DienTichKhuonVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DienTichSuDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HuongNha = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ViTri = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MoTaChiTiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GiaBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTenKH = new System.Windows.Forms.Label();
             this.lblMaKH = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -83,6 +73,11 @@
             this.btnXoaDO = new System.Windows.Forms.Button();
             this.btnSuaDO = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTrangThai = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.rbNo = new System.Windows.Forms.RadioButton();
+            this.rbYes = new System.Windows.Forms.RadioButton();
+            this.label19 = new System.Windows.Forms.Label();
             this.lblDiaChiDO = new System.Windows.Forms.Label();
             this.txtGiaBan = new System.Windows.Forms.TextBox();
             this.lblGiaBan = new System.Windows.Forms.Label();
@@ -154,6 +149,17 @@
             this.lblKH = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
+            this.MaDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiDiaOc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiaChiDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DienTichKhuonVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DienTichSuDung = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HuongNha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ViTri = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MoTaChiTiet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GiaBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HinhAnh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabCtrlPhieuDangKy.SuspendLayout();
             this.tabPageKhachHang.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).BeginInit();
@@ -568,7 +574,7 @@
             this.dgvDiaOc.AllowUserToDeleteRows = false;
             this.dgvDiaOc.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiaOc.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MaDiaOc,
+            this.MaDO,
             this.LoaiDiaOc,
             this.DiaChiDO,
             this.DienTichKhuonVien,
@@ -577,84 +583,15 @@
             this.ViTri,
             this.MoTaChiTiet,
             this.GiaBan,
+            this.HinhAnh,
             this.TrangThai});
             this.dgvDiaOc.Location = new System.Drawing.Point(363, 48);
             this.dgvDiaOc.Name = "dgvDiaOc";
             this.dgvDiaOc.ReadOnly = true;
             this.dgvDiaOc.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDiaOc.Size = new System.Drawing.Size(562, 369);
+            this.dgvDiaOc.Size = new System.Drawing.Size(562, 477);
             this.dgvDiaOc.TabIndex = 23;
-            this.dgvDiaOc.SelectionChanged += new System.EventHandler(this.dataGrid_DiaOc_SelectionChanged);
-            // 
-            // MaDiaOc
-            // 
-            this.MaDiaOc.DataPropertyName = "MaDO";
-            this.MaDiaOc.HeaderText = "Mã địa ốc";
-            this.MaDiaOc.Name = "MaDiaOc";
-            this.MaDiaOc.ReadOnly = true;
-            // 
-            // LoaiDiaOc
-            // 
-            this.LoaiDiaOc.DataPropertyName = "TenLoaiDO";
-            this.LoaiDiaOc.HeaderText = "Loại địa ốc";
-            this.LoaiDiaOc.Name = "LoaiDiaOc";
-            this.LoaiDiaOc.ReadOnly = true;
-            // 
-            // DiaChiDO
-            // 
-            this.DiaChiDO.DataPropertyName = "DiaChi";
-            this.DiaChiDO.HeaderText = "Địa chỉ ";
-            this.DiaChiDO.Name = "DiaChiDO";
-            this.DiaChiDO.ReadOnly = true;
-            // 
-            // DienTichKhuonVien
-            // 
-            this.DienTichKhuonVien.DataPropertyName = "DienTichKhuonVien";
-            this.DienTichKhuonVien.HeaderText = "Diện tích khuôn viên";
-            this.DienTichKhuonVien.Name = "DienTichKhuonVien";
-            this.DienTichKhuonVien.ReadOnly = true;
-            // 
-            // DienTichSuDung
-            // 
-            this.DienTichSuDung.DataPropertyName = "DienTichSuDung";
-            this.DienTichSuDung.HeaderText = "Diện tích sử dụng";
-            this.DienTichSuDung.Name = "DienTichSuDung";
-            this.DienTichSuDung.ReadOnly = true;
-            // 
-            // HuongNha
-            // 
-            this.HuongNha.DataPropertyName = "HuongNha";
-            this.HuongNha.HeaderText = "Hướng nhà";
-            this.HuongNha.Name = "HuongNha";
-            this.HuongNha.ReadOnly = true;
-            // 
-            // ViTri
-            // 
-            this.ViTri.DataPropertyName = "ViTri";
-            this.ViTri.HeaderText = "Vị trí";
-            this.ViTri.Name = "ViTri";
-            this.ViTri.ReadOnly = true;
-            // 
-            // MoTaChiTiet
-            // 
-            this.MoTaChiTiet.DataPropertyName = "MoTaChiTiet";
-            this.MoTaChiTiet.HeaderText = "Mô tả chi tiết";
-            this.MoTaChiTiet.Name = "MoTaChiTiet";
-            this.MoTaChiTiet.ReadOnly = true;
-            // 
-            // GiaBan
-            // 
-            this.GiaBan.DataPropertyName = "GiaBan";
-            this.GiaBan.HeaderText = "Giá bán";
-            this.GiaBan.Name = "GiaBan";
-            this.GiaBan.ReadOnly = true;
-            // 
-            // TrangThai
-            // 
-            this.TrangThai.DataPropertyName = "TrangThai";
-            this.TrangThai.HeaderText = "Trạng thái";
-            this.TrangThai.Name = "TrangThai";
-            this.TrangThai.ReadOnly = true;
+            this.dgvDiaOc.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDiaOc_CellClick);
             // 
             // lblTenKH
             // 
@@ -689,9 +626,9 @@
             // btnThemDiaOc
             // 
             this.btnThemDiaOc.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnThemDiaOc.Location = new System.Drawing.Point(6, 447);
+            this.btnThemDiaOc.Location = new System.Drawing.Point(6, 497);
             this.btnThemDiaOc.Name = "btnThemDiaOc";
-            this.btnThemDiaOc.Size = new System.Drawing.Size(92, 28);
+            this.btnThemDiaOc.Size = new System.Drawing.Size(103, 28);
             this.btnThemDiaOc.TabIndex = 9;
             this.btnThemDiaOc.Text = "Thêm";
             this.btnThemDiaOc.UseVisualStyleBackColor = true;
@@ -700,29 +637,32 @@
             // btnXoaDO
             // 
             this.btnXoaDO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnXoaDO.Location = new System.Drawing.Point(116, 447);
+            this.btnXoaDO.Location = new System.Drawing.Point(116, 497);
             this.btnXoaDO.Name = "btnXoaDO";
-            this.btnXoaDO.Size = new System.Drawing.Size(92, 28);
+            this.btnXoaDO.Size = new System.Drawing.Size(105, 28);
             this.btnXoaDO.TabIndex = 10;
             this.btnXoaDO.Text = "Xóa";
             this.btnXoaDO.UseVisualStyleBackColor = true;
-            this.btnXoaDO.Visible = false;
             this.btnXoaDO.Click += new System.EventHandler(this.btnXoaDO_Click);
             // 
             // btnSuaDO
             // 
             this.btnSuaDO.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnSuaDO.Location = new System.Drawing.Point(238, 447);
+            this.btnSuaDO.Location = new System.Drawing.Point(227, 497);
             this.btnSuaDO.Name = "btnSuaDO";
-            this.btnSuaDO.Size = new System.Drawing.Size(92, 28);
+            this.btnSuaDO.Size = new System.Drawing.Size(103, 28);
             this.btnSuaDO.TabIndex = 11;
             this.btnSuaDO.Text = "Sửa";
             this.btnSuaDO.UseVisualStyleBackColor = true;
-            this.btnSuaDO.Visible = false;
             this.btnSuaDO.Click += new System.EventHandler(this.btnSuaDO_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTrangThai);
+            this.groupBox1.Controls.Add(this.label20);
+            this.groupBox1.Controls.Add(this.rbNo);
+            this.groupBox1.Controls.Add(this.rbYes);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.lblDiaChiDO);
             this.groupBox1.Controls.Add(this.txtGiaBan);
             this.groupBox1.Controls.Add(this.lblGiaBan);
@@ -749,16 +689,63 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.Location = new System.Drawing.Point(6, 17);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 400);
+            this.groupBox1.Size = new System.Drawing.Size(324, 474);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin địa ốc";
+            // 
+            // txtTrangThai
+            // 
+            this.txtTrangThai.Location = new System.Drawing.Point(110, 440);
+            this.txtTrangThai.Name = "txtTrangThai";
+            this.txtTrangThai.Size = new System.Drawing.Size(195, 24);
+            this.txtTrangThai.TabIndex = 29;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(15, 443);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(81, 18);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "Trạng thái: ";
+            // 
+            // rbNo
+            // 
+            this.rbNo.AutoSize = true;
+            this.rbNo.Location = new System.Drawing.Point(207, 403);
+            this.rbNo.Name = "rbNo";
+            this.rbNo.Size = new System.Drawing.Size(69, 22);
+            this.rbNo.TabIndex = 27;
+            this.rbNo.TabStop = true;
+            this.rbNo.Text = "Không";
+            this.rbNo.UseVisualStyleBackColor = true;
+            // 
+            // rbYes
+            // 
+            this.rbYes.AutoSize = true;
+            this.rbYes.Location = new System.Drawing.Point(110, 401);
+            this.rbYes.Name = "rbYes";
+            this.rbYes.Size = new System.Drawing.Size(46, 22);
+            this.rbYes.TabIndex = 26;
+            this.rbYes.TabStop = true;
+            this.rbYes.Text = "Có";
+            this.rbYes.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(15, 403);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(74, 18);
+            this.label19.TabIndex = 25;
+            this.label19.Text = "Hình ảnh: ";
             // 
             // lblDiaChiDO
             // 
             this.lblDiaChiDO.AutoSize = true;
             this.lblDiaChiDO.ForeColor = System.Drawing.Color.Red;
-            this.lblDiaChiDO.Location = new System.Drawing.Point(21, 102);
+            this.lblDiaChiDO.Location = new System.Drawing.Point(16, 101);
             this.lblDiaChiDO.Name = "lblDiaChiDO";
             this.lblDiaChiDO.Size = new System.Drawing.Size(0, 18);
             this.lblDiaChiDO.TabIndex = 24;
@@ -776,7 +763,7 @@
             // 
             this.lblGiaBan.AutoSize = true;
             this.lblGiaBan.ForeColor = System.Drawing.Color.Red;
-            this.lblGiaBan.Location = new System.Drawing.Point(15, 351);
+            this.lblGiaBan.Location = new System.Drawing.Point(18, 385);
             this.lblGiaBan.Name = "lblGiaBan";
             this.lblGiaBan.Size = new System.Drawing.Size(0, 18);
             this.lblGiaBan.TabIndex = 23;
@@ -785,7 +772,7 @@
             // 
             this.lblMoTa.AutoSize = true;
             this.lblMoTa.ForeColor = System.Drawing.Color.Red;
-            this.lblMoTa.Location = new System.Drawing.Point(18, 277);
+            this.lblMoTa.Location = new System.Drawing.Point(18, 341);
             this.lblMoTa.Name = "lblMoTa";
             this.lblMoTa.Size = new System.Drawing.Size(0, 18);
             this.lblMoTa.TabIndex = 22;
@@ -794,7 +781,7 @@
             // 
             this.lblViTri.AutoSize = true;
             this.lblViTri.ForeColor = System.Drawing.Color.Red;
-            this.lblViTri.Location = new System.Drawing.Point(18, 238);
+            this.lblViTri.Location = new System.Drawing.Point(15, 268);
             this.lblViTri.Name = "lblViTri";
             this.lblViTri.Size = new System.Drawing.Size(0, 18);
             this.lblViTri.TabIndex = 21;
@@ -803,7 +790,7 @@
             // 
             this.lblHuongNha.AutoSize = true;
             this.lblHuongNha.ForeColor = System.Drawing.Color.Red;
-            this.lblHuongNha.Location = new System.Drawing.Point(18, 197);
+            this.lblHuongNha.Location = new System.Drawing.Point(15, 232);
             this.lblHuongNha.Name = "lblHuongNha";
             this.lblHuongNha.Size = new System.Drawing.Size(0, 18);
             this.lblHuongNha.TabIndex = 20;
@@ -897,7 +884,7 @@
             this.cbLoaiDiaOc.Name = "cbLoaiDiaOc";
             this.cbLoaiDiaOc.Size = new System.Drawing.Size(195, 26);
             this.cbLoaiDiaOc.TabIndex = 1;
-            this.cbLoaiDiaOc.TextChanged += new System.EventHandler(this.cbLoaiDiaOc_TextChanged);
+            this.cbLoaiDiaOc.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbLoaiDiaOc_KeyPress);
             // 
             // txtDTSD
             // 
@@ -922,7 +909,7 @@
             this.txtDiaChiDO.Location = new System.Drawing.Point(110, 69);
             this.txtDiaChiDO.Multiline = true;
             this.txtDiaChiDO.Name = "txtDiaChiDO";
-            this.txtDiaChiDO.Size = new System.Drawing.Size(195, 46);
+            this.txtDiaChiDO.Size = new System.Drawing.Size(195, 50);
             this.txtDiaChiDO.TabIndex = 2;
             this.txtDiaChiDO.TextChanged += new System.EventHandler(this.txtDiaChiDO_TextChanged);
             // 
@@ -1509,6 +1496,83 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Phiếu đăng ký bán địa ốc";
             // 
+            // MaDO
+            // 
+            this.MaDO.DataPropertyName = "MaDO";
+            this.MaDO.HeaderText = "Mã địa ốc";
+            this.MaDO.Name = "MaDO";
+            this.MaDO.ReadOnly = true;
+            // 
+            // LoaiDiaOc
+            // 
+            this.LoaiDiaOc.DataPropertyName = "TenLoaiDO";
+            this.LoaiDiaOc.HeaderText = "Loại địa ốc";
+            this.LoaiDiaOc.Name = "LoaiDiaOc";
+            this.LoaiDiaOc.ReadOnly = true;
+            // 
+            // DiaChiDO
+            // 
+            this.DiaChiDO.DataPropertyName = "DiaChi";
+            this.DiaChiDO.HeaderText = "Địa chỉ ";
+            this.DiaChiDO.Name = "DiaChiDO";
+            this.DiaChiDO.ReadOnly = true;
+            // 
+            // DienTichKhuonVien
+            // 
+            this.DienTichKhuonVien.DataPropertyName = "DienTichKhuonVien";
+            this.DienTichKhuonVien.HeaderText = "Diện tích khuôn viên";
+            this.DienTichKhuonVien.Name = "DienTichKhuonVien";
+            this.DienTichKhuonVien.ReadOnly = true;
+            // 
+            // DienTichSuDung
+            // 
+            this.DienTichSuDung.DataPropertyName = "DienTichSuDung";
+            this.DienTichSuDung.HeaderText = "Diện tích sử dụng";
+            this.DienTichSuDung.Name = "DienTichSuDung";
+            this.DienTichSuDung.ReadOnly = true;
+            // 
+            // HuongNha
+            // 
+            this.HuongNha.DataPropertyName = "HuongNha";
+            this.HuongNha.HeaderText = "Hướng nhà";
+            this.HuongNha.Name = "HuongNha";
+            this.HuongNha.ReadOnly = true;
+            // 
+            // ViTri
+            // 
+            this.ViTri.DataPropertyName = "ViTri";
+            this.ViTri.HeaderText = "Vị trí";
+            this.ViTri.Name = "ViTri";
+            this.ViTri.ReadOnly = true;
+            // 
+            // MoTaChiTiet
+            // 
+            this.MoTaChiTiet.DataPropertyName = "MoTaChiTiet";
+            this.MoTaChiTiet.HeaderText = "Mô tả chi tiết";
+            this.MoTaChiTiet.Name = "MoTaChiTiet";
+            this.MoTaChiTiet.ReadOnly = true;
+            // 
+            // GiaBan
+            // 
+            this.GiaBan.DataPropertyName = "GiaBan";
+            this.GiaBan.HeaderText = "Giá bán";
+            this.GiaBan.Name = "GiaBan";
+            this.GiaBan.ReadOnly = true;
+            // 
+            // HinhAnh
+            // 
+            this.HinhAnh.DataPropertyName = "HinhAnh";
+            this.HinhAnh.HeaderText = "Hình ảnh";
+            this.HinhAnh.Name = "HinhAnh";
+            this.HinhAnh.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            this.TrangThai.DataPropertyName = "TrangThai";
+            this.TrangThai.HeaderText = "Trạng thái";
+            this.TrangThai.Name = "TrangThai";
+            this.TrangThai.ReadOnly = true;
+            // 
             // FormRegistration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1677,7 +1741,13 @@
         private System.Windows.Forms.RadioButton rbNu;
         private System.Windows.Forms.RadioButton rbNam;
         private System.Windows.Forms.Label lblNamSinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDiaOc;
+        private System.Windows.Forms.ComboBox txtNamSinh;
+        private System.Windows.Forms.RadioButton rbYes;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.RadioButton rbNo;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtTrangThai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiDiaOc;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiaChiDO;
         private System.Windows.Forms.DataGridViewTextBoxColumn DienTichKhuonVien;
@@ -1686,7 +1756,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ViTri;
         private System.Windows.Forms.DataGridViewTextBoxColumn MoTaChiTiet;
         private System.Windows.Forms.DataGridViewTextBoxColumn GiaBan;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HinhAnh;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
-        private System.Windows.Forms.ComboBox txtNamSinh;
     }
 }
