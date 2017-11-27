@@ -49,9 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinesLogicLayers\AdvBoardBLL.cs" />
     <Compile Include="BusinesLogicLayers\CustomerBLL.cs" />
     <Compile Include="BusinesLogicLayers\DocumentBLL.cs" />
-    <Compile Include="BusinesLogicLayers\FlyersBLL.cs" />
+    <Compile Include="BusinesLogicLayers\AdvFlyersBLL.cs" />
     <Compile Include="BusinesLogicLayers\LoginBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateTypeBLL.cs" />
@@ -62,12 +63,13 @@
     <Compile Include="DataAccessLayers\Connection.cs" />
     <Compile Include="DataAccessLayers\CustomerDAL.cs" />
     <Compile Include="DataAccessLayers\DocumentDAL.cs" />
-    <Compile Include="DataAccessLayers\FlyersDAL.cs" />
+    <Compile Include="DataAccessLayers\AdvFlyersDAL.cs" />
     <Compile Include="DataAccessLayers\LoginDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateTypeDAL.cs" />
     <Compile Include="DataAccessLayers\RegistrationDAL.cs" />
     <Compile Include="DataAccessLayers\SettingDAL.cs" />
+    <Compile Include="DataAccessLayers\AdvBoardDAL.cs" />
     <Compile Include="DataAccessLayers\UserDAL.cs" />
     <Compile Include="DataAccessLayers\UserTypeDAL.cs" />
     <Compile Include="DataTransferObject\CustomerDTO.cs" />

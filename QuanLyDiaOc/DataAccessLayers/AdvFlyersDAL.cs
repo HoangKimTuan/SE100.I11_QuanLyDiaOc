@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace QuanLyDiaOc.DataAccessLayers
 {
-    class FlyersDAL : Connection
+    class AdvFlyersDAL : Connection
     {
         public DataTable GetInfoFlyers(string maQcToBuom)
         {

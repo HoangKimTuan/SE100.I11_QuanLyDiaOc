@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace QuanLyDiaOc.BusinesLogicLayers
 {
-    class FlyersBLL
+    class AdvFlyersBLL
     {
-        FlyersDAL flyersDAL = new FlyersDAL();
+        AdvFlyersDAL flyersDAL = new AdvFlyersDAL();
 
         public DataTable GetInfoFlyers(string maqctobuom)
         {
