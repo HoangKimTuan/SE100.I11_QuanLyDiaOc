@@ -22,6 +22,10 @@ namespace QuanLyDiaOc.PresentationLayers
         private DocumentBLL documentBLL;
         private DataTable dtDangKy;
         private RegistrationBLL registrationBLL;
+        private FlyersBLL flyersBLL;
+        private DataTable dtBuom;
+        private DataTable dtBang;
+        private DataTable dtBao;
 
         private void Empty()
         {
@@ -37,6 +41,7 @@ namespace QuanLyDiaOc.PresentationLayers
             documentBLL = new DocumentBLL();
             dtDangKy = new DataTable();
             registrationBLL = new RegistrationBLL();
+            flyersBLL = new FlyersBLL();
         }
 
         private void FormSearch_Load(object sender, EventArgs e)
@@ -164,111 +169,109 @@ namespace QuanLyDiaOc.PresentationLayers
                         dateTimePicker_DKy.Value = dt;
                         DateTime dt1 = DateTime.Parse(dtDangKy.Rows[0]["NGAYKETTHUC"].ToString());
                         dateTimePicker_KetThuc.Value = dt1;
-                    }
+                        if (dtDangKy.Rows.Count == 0)
+                        {
+                             return;
+                        }
+                        lbl_SoLan.Text = dtDangKy.Rows[0][8].ToString();
+                        }
                     catch { }
-                    if (dtDangKy.Rows.Count == 0)
-                    {
-                        return;
-                    }
-                    lbl_SoLan.Text = dtDangKy.Rows[0][8].ToString();
-          /*          HoaDonBUS hd = new HoaDonBUS();
-                    DataTable dtHD = hd.GetHoaDon(dtDangKy.Rows[0]["MADANGKY"].ToString());
 
-                    try
-                    {
-                        if (dtHD.Rows[0]["TINHTRANGTHANHTOAN"].ToString() == "True")
-                        {
-                            isEditQC = false;
-                            txtThanhToan.Text = "*Đã thanh toán phí quảng cáo và lập phiếu thu";
-                        }
-                        else
-                        {
-                            isEditQC = true;
-                            txtThanhToan.Text = "*Vui lòng thanh toán phí quảng cáo và lập phiếu thu";
-                        }
-                    }
-                    catch { }
-                    if (dtDangKy.Rows[0]["MADANGKY"].ToString() != null)
-                    {
-                        if (dtDangKy.Rows[0]["MAQCTRENBAO"].ToString() != "")
-                        {
-                            ckb_QCTrenBao.Checked = true;
-                            string mLoaiDK = QCBaos.GetMaLoaiQC(dtDangKy.Rows[0]["MAQCTRENBAO"].ToString());
-                            dtBao = QCBaos.GetInfoLoaiQC(mLoaiDK);
-                            cbQCBao.Text = dtBao.Rows[0]["MATIENQCBAO"].ToString();
-                            lblViTri.Text = string.Format("{0:#,###0}", double.Parse(dtBao.Rows[0]["GIATIEN"].ToString().Trim()));
-                            if (dtBao.Rows[0]["ANH"].ToString().Trim() == "False")
-                            {
-                                ckbCoHinh_Bao.Checked = false;
-                            }
-                            else
-                            {
-                                ckbCoHinh_Bao.Checked = true;
-                            }
-                            if (dtBao.Rows[0]["MAUSAC"].ToString().Trim() == "False")
-                            {
-                                ckbCoMau.Checked = false;
-                            }
-                            else
-                                ckbCoMau.Checked = true;
-                        }
-                        else
-                        {
-                            dataGridBao.Enabled = false;
-                            cbQCBao.Enabled = false;
-                            cbQCBao.Text = null;
-                            ckbCoMau.Checked = false;
-                            ckbCoHinh_Bao.Checked = false;
-                            lblViTri.Text = null;
-                            txtGia_Bao.Text = null;
-                        }
-                        if (dtDangKy.Rows[0]["MAQCTRENBANG"].ToString() != "")
-                        {
-                            ckb_QCTrenBang.Checked = true;
-                            string mLoaiDK = QCBangs.GetMaLoaiQC(dtDangKy.Rows[0]["MAQCTRENBANG"].ToString());
-                            dtBang = QCBangs.GetInfoLoaiQC(mLoaiDK);
-                            cbLoaiQCBang.Text = dtBang.Rows[0]["MAGIATIENBANG"].ToString();
-                            lblKichCo_Bang.Text = dtBang.Rows[0]["KICHCO"].ToString().Trim();
-                            txtHinhthuc_Bang.Text = dtBang.Rows[0]["LOAIQCTRENBANG"].ToString().Trim();
-                            if (dtBang.Rows[0]["ANH"].ToString().Trim() == "False")
-                            {
-                                ckbCoHinh_Bang.Checked = false;
-                            }
-                            else
-                                ckbCoHinh_Bang.Checked = true;
-                            txtGia_Bang.Text = string.Format("{0:#,###0}", double.Parse(dtBang.Rows[0]["GIATIEN"].ToString().Trim()));
-                        }
-                        else
-                        {
-                            ckb_QCTrenBang.Checked = false;
-                            cbLoaiQCBang.Enabled = false;
-                            cbLoaiQCBang.Text = null;
-                            lblKichCo_Bang.Text = null;
-                            txtHinhthuc_Bang.Text = null;
-                            ckbCoHinh_Bang.Checked = false;
-                            txtGia_Bang.Text = null;
+                    /*          HoaDonBUS hd = new HoaDonBUS();
+                              DataTable dtHD = hd.GetHoaDon(dtDangKy.Rows[0]["MADANGKY"].ToString());
 
-                        }
-                        if (dtDangKy.Rows[0]["MAQCTOBUOM"].ToString() != "")
-                        {
-                            //cmbQCToBuom_LoaiQC.Enabled = true;
-                            ckb_QCToBuom.Checked = true;
-                            string mLoaiDK = QCToBuoms.GetMaLoaiQC(dtDangKy.Rows[0]["MAQCTOBUOM"].ToString());
-                            dtBuom = QCToBuoms.GetInfoLoaiQC(mLoaiDK);
-                            cbLoaiQCToBuom.Text = dtBuom.Rows[0]["MAGIATIENTOBUOM"].ToString();
-                            lblSoLuong.Text = dtBuom.Rows[0]["SOLUONG"].ToString();
-                            txtGia_ToBuom.Text = String.Format("{0:#,###0}", double.Parse(dtBuom.Rows[0]["GIATIEN"].ToString()));
-                        }
-                        else
-                        {
-                            ckb_QCToBuom.Checked = false;
-                            lblSoLuong.Text = null;
-                            cbLoaiQCToBuom.Text = null;
-                            txtGia_ToBuom.Text = null;
-                            cbLoaiQCToBuom.Enabled = false;
-                        }
-                    } */
-                }
+                              try
+                              {
+                                  if (dtHD.Rows[0]["TINHTRANGTHANHTOAN"].ToString() == "True")
+                                  {
+                                      isEditQC = false;
+                                      txtThanhToan.Text = "*Đã thanh toán phí quảng cáo và lập phiếu thu";
+                                  }
+                                  else
+                                  {
+                                      isEditQC = true;
+                                      txtThanhToan.Text = "*Vui lòng thanh toán phí quảng cáo và lập phiếu thu";
+                                  }
+                              }
+                              catch { }
+                              if (dtDangKy.Rows[0]["MADANGKY"].ToString() != null)
+                              {
+                                  if (dtDangKy.Rows[0]["MAQCTRENBAO"].ToString() != "")
+                                  {
+                                      ckb_QCTrenBao.Checked = true;
+                                      string mLoaiDK = QCBaos.GetMaLoaiQC(dtDangKy.Rows[0]["MAQCTRENBAO"].ToString());
+                                      dtBao = QCBaos.GetInfoLoaiQC(mLoaiDK);
+                                      cbQCBao.Text = dtBao.Rows[0]["MATIENQCBAO"].ToString();
+                                      lblViTri.Text = string.Format("{0:#,###0}", double.Parse(dtBao.Rows[0]["GIATIEN"].ToString().Trim()));
+                                      if (dtBao.Rows[0]["ANH"].ToString().Trim() == "False")
+                                      {
+                                          ckbCoHinh_Bao.Checked = false;
+                                      }
+                                      else
+                                      {
+                                          ckbCoHinh_Bao.Checked = true;
+                                      }
+                                      if (dtBao.Rows[0]["MAUSAC"].ToString().Trim() == "False")
+                                      {
+                                          ckbCoMau.Checked = false;
+                                      }
+                                      else
+                                          ckbCoMau.Checked = true;
+                                  }
+                                  else
+                                  {
+                                      dataGridBao.Enabled = false;
+                                      cbQCBao.Enabled = false;
+                                      cbQCBao.Text = null;
+                                      ckbCoMau.Checked = false;
+                                      ckbCoHinh_Bao.Checked = false;
+                                      lblViTri.Text = null;
+                                      txtGia_Bao.Text = null;
+                                  }
+                                  if (dtDangKy.Rows[0]["MAQCTRENBANG"].ToString() != "")
+                                  {
+                                      ckb_QCTrenBang.Checked = true;
+                                      string mLoaiDK = QCBangs.GetMaLoaiQC(dtDangKy.Rows[0]["MAQCTRENBANG"].ToString());
+                                      dtBang = QCBangs.GetInfoLoaiQC(mLoaiDK);
+                                      cbLoaiQCBang.Text = dtBang.Rows[0]["MAGIATIENBANG"].ToString();
+                                      lblKichCo_Bang.Text = dtBang.Rows[0]["KICHCO"].ToString().Trim();
+                                      txtHinhthuc_Bang.Text = dtBang.Rows[0]["LOAIQCTRENBANG"].ToString().Trim();
+                                      if (dtBang.Rows[0]["ANH"].ToString().Trim() == "False")
+                                      {
+                                          ckbCoHinh_Bang.Checked = false;
+                                      }
+                                      else
+                                          ckbCoHinh_Bang.Checked = true;
+                                      txtGia_Bang.Text = string.Format("{0:#,###0}", double.Parse(dtBang.Rows[0]["GIATIEN"].ToString().Trim()));
+                                  }
+                                  else
+                                  {
+                                      ckb_QCTrenBang.Checked = false;
+                                      cbLoaiQCBang.Enabled = false;
+                                      cbLoaiQCBang.Text = null;
+                                      lblKichCo_Bang.Text = null;
+                                      txtHinhthuc_Bang.Text = null;
+                                      ckbCoHinh_Bang.Checked = false;
+                                      txtGia_Bang.Text = null;
+
+                                  } */
+                    if (dtDangKy.Rows[0]["MaQCToBuom"].ToString() != "")
+                    {
+                        //cmbQCToBuom_LoaiQC.Enabled = true;
+                        ckb_QCToBuom.Checked = true;
+                        dtBuom = flyersBLL.GetInfoFlyers(dtDangKy.Rows[0]["MaQCToBuom"].ToString());
+                        txt_NoiDung_ToBuom.Text = dtBuom.Rows[0]["NoiDung"].ToString();
+                        lblSoLuong_ToBuom.Text = dtBuom.Rows[0]["SoLuongPhatHanh"].ToString();
+                        txtGia_ToBuom.Text = String.Format("{0:#,###0}", double.Parse(dtBuom.Rows[0]["GiaTien"].ToString()));
+                    }
+                    else
+                    {
+                        txt_NoiDung_ToBuom.Text = null;
+                        ckb_QCToBuom.Checked = false;
+                        lblSoLuong_ToBuom.Text = null;
+                        txtGia_ToBuom.Text = null;
+                    }
+            }
             }
             catch { }
         }
@@ -466,6 +469,11 @@ namespace QuanLyDiaOc.PresentationLayers
             dgvGiayTo.DataSource = documentBLL.GetListDocument(txtTim_MaDO.Text);
             dgvGiayTo.Columns["MaDO"].Visible = false;
             dgvGiayTo.Columns["MaGiayTo"].Visible = false;
+        }
+
+        private void cbLoaiQCToBuom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

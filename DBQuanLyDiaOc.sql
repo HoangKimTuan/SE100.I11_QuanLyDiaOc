@@ -70,14 +70,14 @@ create table PhieuThu
 	SoTienThu money,
 )
 
-create table ToBuom
+create table QC_ToBuom
 (
-	MaToBuom nchar(10) primary key not null,
-	SoPDK nchar(10) not null,
-	DonGia money,
+	MaQCToBuom nchar(10) primary key not null,
+	NoiDung nvarchar(500),
 	SoLuongPhatHanh Int,
-	ThanhTien Money,
+	GiaTien Money,
 )
+
 
 Create table QC_TrenBang
 (
@@ -234,6 +234,12 @@ CREATE PROC sp_KhachHang_Xoa
 
 AS
 	DELETE FROM KhachHang WHERE MaKH=@ma
+GO
+
+create proc sp_QCToBuom_LayThongTin
+@maqctobuom nchar(10)
+AS
+	select * from QC_ToBuom where MaQCToBuom = @maqctobuom
 GO
 
 CREATE PROC sp_KhachHang_Sua
