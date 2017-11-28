@@ -41,5 +41,18 @@ namespace QuanLyDiaOc.BusinesLogicLayers
         {
             return customerDAL.UpdateCustomer(customerDTO);
         }
+
+        public DataTable GetInfoCustomer(string customerId)
+        {
+            try
+            {
+                return customerDAL.GetInfoCustomer(customerId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
     }
 }

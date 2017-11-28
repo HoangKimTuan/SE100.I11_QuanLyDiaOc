@@ -175,6 +175,46 @@ namespace QuanLyDiaOc.DataAccessLayers
                 return null;
             }
         }
+        public DataTable GetInfoRealEstate(string realEstateId)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_DicOC_LayThongTin";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@mado", realEstateId));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                CloseConnect();
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
+        public DataTable GetTypeRealEstate(string typeRealEstateId)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_DiaOc_TenLoaiDiaOc";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@maloaido", typeRealEstateId));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                CloseConnect();
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

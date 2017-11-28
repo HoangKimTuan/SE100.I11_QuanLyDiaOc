@@ -51,6 +51,8 @@ create table PhieuDangKy
 	SoLanGiaHan int,
 )
 
+
+
 create table GiayTo 
 (
 	MaGiayTo nchar(10) primary key not null,
@@ -75,7 +77,8 @@ create table QC_ToBuom
 	MaQCToBuom nchar(10) primary key not null,
 	NoiDung nvarchar(500),
 	SoLuongPhatHanh Int,
-	GiaTien Money,
+	DonGia money,
+	ThanhTien Money,
 )
 
 
@@ -86,6 +89,7 @@ Create table QC_TrenBang
 	NoiDung nvarchar(100),
 	DonGia Money,
 	TinhTrang Bit,
+	ThanhTien money,
 	MaHinhAnh varchar(10),
 )
 
@@ -383,8 +387,8 @@ GO
 
 CREATE PROC sp_DangKy_LayDanhSachHetHan
 AS
-Select * FROM PhieuDangKy d 
-WHERE d.NGAYKETTHUC < getdate()
+Select * FROM PhieuDangKy 
+WHERE NGAYKETTHUC < getdate()
 GO
 
 CREATE PROC sp_DiaOc_TimKiem
@@ -414,7 +418,7 @@ GO
 CREATE PROC sp_QCBang_LayThongTin
 @maqcbang varchar(10)
 AS
-	Select NoiDung,TenLoaiBang,KichCo, MaHinhAnh, DonGia from QC_TrenBang,LoaiBang where MaQCBang = @maqcbang and QC_TrenBang.MaLoaiBang = LoaiBang.MaLoaiBang
+	Select NoiDung,TenLoaiBang,KichCo, MaHinhAnh, DonGia, ThanhTien from QC_TrenBang,LoaiBang where MaQCBang = @maqcbang and QC_TrenBang.MaLoaiBang = LoaiBang.MaLoaiBang
 GO
 
 CREATE PROC sp_QCBao_LayThongTin
@@ -427,6 +431,24 @@ CREATE PROC sp_Bao_LayDanhSachBao
 @maqcbao varchar(10)
 AS
 	select MaBao,TenBao,ThuPhatHanh from Bao where MaQCTrenBao = @maqcbao
+GO
+
+Create proc sp_KhachHang_LayThongTin
+@makh varchar(10)
+AS
+	select * from KhachHang where MaKH = @makh
+GO
+
+Create proc sp_DicOC_LayThongTin
+@mado varchar(10)
+AS
+	select * from DiaOc where MaDO = @mado
+GO
+
+CREATE PROC sp_DiaOc_TenLoaiDiaOc
+@maloaido varchar(10)
+AS
+	select TenLoaiDO from LoaiDiaOc where MaLoaiDO = @maloaido
 GO
 
 INSERT INTO NguoiDung VALUES('HoangKimTuan', '123456', 'LND001')

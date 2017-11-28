@@ -58,6 +58,7 @@
     <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateTypeBLL.cs" />
     <Compile Include="BusinesLogicLayers\RegistrationBLL.cs" />
+    <Compile Include="BusinesLogicLayers\RenewalBLL.cs" />
     <Compile Include="BusinesLogicLayers\SettingBLL.cs" />
     <Compile Include="BusinesLogicLayers\UserBLL.cs" />
     <Compile Include="BusinesLogicLayers\UserTypeBLL.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateTypeDAL.cs" />
     <Compile Include="DataAccessLayers\RegistrationDAL.cs" />
+    <Compile Include="DataAccessLayers\RenewalDAL.cs" />
     <Compile Include="DataAccessLayers\SettingDAL.cs" />
     <Compile Include="DataAccessLayers\AdvBoardDAL.cs" />
     <Compile Include="DataAccessLayers\UserDAL.cs" />

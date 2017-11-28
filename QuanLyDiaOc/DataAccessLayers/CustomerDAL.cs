@@ -143,5 +143,26 @@ namespace QuanLyDiaOc.DataAccessLayers
                 return false;
             }
         }
+
+        public DataTable GetInfoCustomer(string customerId)
+        {
+            try
+            {
+                OpenConnect();
+                DataTable data = new DataTable();
+                string store = "sp_KhachHang_LayThongTin";
+                sqlCommand = new SqlCommand(store, connect);
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+                sqlCommand.Parameters.Add(new SqlParameter("@makh", customerId));
+                sqlAdapter = new SqlDataAdapter(sqlCommand);
+                sqlAdapter.Fill(data);
+                CloseConnect();
+                return data;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -40,7 +40,6 @@ namespace QuanLyDiaOc.PresentationLayers
             }
             FormSetting formSetting = new FormSetting();
             formSetting.MdiParent = this;
-            formSetting.StartPosition = FormStartPosition.Manual;
             formSetting.Show();
         }
 

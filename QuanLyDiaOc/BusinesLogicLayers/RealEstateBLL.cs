@@ -44,5 +44,29 @@ namespace QuanLyDiaOc.BusinesLogicLayers
                 return null;
             }
         }
+
+        public DataTable GetInfoRealEstate(string realEstateId)
+        {
+            try
+            {
+                return realEstateDAL.GetInfoRealEstate(realEstateId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public DataTable GetTypeRealEstate(string typeRealEstateId)
+        {
+            try
+            {
+                return realEstateDAL.GetTypeRealEstate(typeRealEstateId);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

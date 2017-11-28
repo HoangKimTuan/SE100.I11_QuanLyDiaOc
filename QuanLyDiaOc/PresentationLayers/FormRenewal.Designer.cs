@@ -31,17 +31,16 @@ namespace QuanLyDiaOc.PresentationLayers
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.dataGridChiTiet = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtTienGiaHan = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTongTien = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLoaiDiaOc = new System.Windows.Forms.TextBox();
             this.ckbTrangThai = new System.Windows.Forms.CheckBox();
             this.txtMoTa = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -55,7 +54,6 @@ namespace QuanLyDiaOc.PresentationLayers
             this.label14 = new System.Windows.Forms.Label();
             this.txtHuongNha = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.cbLoaiDiaOc = new System.Windows.Forms.ComboBox();
             this.txtDTSD = new System.Windows.Forms.TextBox();
             this.txtDTKV = new System.Windows.Forms.TextBox();
             this.txtDiaChiDO = new System.Windows.Forms.TextBox();
@@ -75,21 +73,24 @@ namespace QuanLyDiaOc.PresentationLayers
             this.lDiachi = new System.Windows.Forms.Label();
             this.lHoten = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridDangKy = new System.Windows.Forms.DataGridView();
-            this.MaDK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDangKyGiaHan = new System.Windows.Forms.DataGridView();
+            this.SoPDK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaDiaOc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayDangKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgàyKetThuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLanGiaHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnGiaHan = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridChiTiet)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbthongtinkhachhang.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridDangKy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDangKyGiaHan)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox3
@@ -113,7 +114,7 @@ namespace QuanLyDiaOc.PresentationLayers
             this.dataGridChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridChiTiet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
-            this.Column2,
+            this.DonGia,
             this.Column3});
             this.dataGridChiTiet.Location = new System.Drawing.Point(63, 21);
             this.dataGridChiTiet.Name = "dataGridChiTiet";
@@ -123,24 +124,6 @@ namespace QuanLyDiaOc.PresentationLayers
             this.dataGridChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridChiTiet.Size = new System.Drawing.Size(346, 97);
             this.dataGridChiTiet.TabIndex = 0;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Nội dung";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Đơn giá";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Thành tiền";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -198,6 +181,7 @@ namespace QuanLyDiaOc.PresentationLayers
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox1.Controls.Add(this.txtLoaiDiaOc);
             this.groupBox1.Controls.Add(this.ckbTrangThai);
             this.groupBox1.Controls.Add(this.txtMoTa);
             this.groupBox1.Controls.Add(this.label22);
@@ -211,7 +195,6 @@ namespace QuanLyDiaOc.PresentationLayers
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtHuongNha);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.cbLoaiDiaOc);
             this.groupBox1.Controls.Add(this.txtDTSD);
             this.groupBox1.Controls.Add(this.txtDTKV);
             this.groupBox1.Controls.Add(this.txtDiaChiDO);
@@ -226,6 +209,14 @@ namespace QuanLyDiaOc.PresentationLayers
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin địa ốc";
+            // 
+            // txtLoaiDiaOc
+            // 
+            this.txtLoaiDiaOc.Location = new System.Drawing.Point(354, 54);
+            this.txtLoaiDiaOc.Name = "txtLoaiDiaOc";
+            this.txtLoaiDiaOc.ReadOnly = true;
+            this.txtLoaiDiaOc.Size = new System.Drawing.Size(153, 24);
+            this.txtLoaiDiaOc.TabIndex = 25;
             // 
             // ckbTrangThai
             // 
@@ -338,14 +329,6 @@ namespace QuanLyDiaOc.PresentationLayers
             this.label16.Size = new System.Drawing.Size(88, 18);
             this.label16.TabIndex = 10;
             this.label16.Text = "Hướng nhà: ";
-            // 
-            // cbLoaiDiaOc
-            // 
-            this.cbLoaiDiaOc.FormattingEnabled = true;
-            this.cbLoaiDiaOc.Location = new System.Drawing.Point(354, 55);
-            this.cbLoaiDiaOc.Name = "cbLoaiDiaOc";
-            this.cbLoaiDiaOc.Size = new System.Drawing.Size(153, 26);
-            this.cbLoaiDiaOc.TabIndex = 9;
             // 
             // txtDTSD
             // 
@@ -527,45 +510,44 @@ namespace QuanLyDiaOc.PresentationLayers
             this.label6.TabIndex = 26;
             this.label6.Text = "Phiếu gia hạn dịch vụ";
             // 
-            // dataGridDangKy
+            // dgvDangKyGiaHan
             // 
-            this.dataGridDangKy.AllowUserToAddRows = false;
-            this.dataGridDangKy.AllowUserToDeleteRows = false;
-            this.dataGridDangKy.AllowUserToResizeRows = false;
-            this.dataGridDangKy.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dataGridDangKy.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridDangKy.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridDangKy.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridDangKy.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
-            this.dataGridDangKy.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dataGridDangKy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridDangKy.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MaDK,
+            this.dgvDangKyGiaHan.AllowUserToAddRows = false;
+            this.dgvDangKyGiaHan.AllowUserToDeleteRows = false;
+            this.dgvDangKyGiaHan.AllowUserToResizeRows = false;
+            this.dgvDangKyGiaHan.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.dgvDangKyGiaHan.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvDangKyGiaHan.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvDangKyGiaHan.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvDangKyGiaHan.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dgvDangKyGiaHan.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvDangKyGiaHan.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDangKyGiaHan.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.SoPDK,
             this.MaKH,
-            this.MaDiaOc,
+            this.MaDO,
             this.NgayDangKy,
             this.NgàyKetThuc,
             this.SoLanGiaHan});
-            this.dataGridDangKy.EnableHeadersVisualStyles = false;
-            this.dataGridDangKy.Location = new System.Drawing.Point(211, 59);
-            this.dataGridDangKy.MultiSelect = false;
-            this.dataGridDangKy.Name = "dataGridDangKy";
-            this.dataGridDangKy.ReadOnly = true;
-            this.dataGridDangKy.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridDangKy.RowHeadersVisible = false;
-            this.dataGridDangKy.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridDangKy.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridDangKy.Size = new System.Drawing.Size(824, 159);
-            this.dataGridDangKy.TabIndex = 27;
-     //       this.dataGridDangKy.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridDangKy_CellContentClick);
-   //         this.dataGridDangKy.SelectionChanged += new System.EventHandler(this.dataGridDangKy_SelectionChanged);
+            this.dgvDangKyGiaHan.EnableHeadersVisualStyles = false;
+            this.dgvDangKyGiaHan.Location = new System.Drawing.Point(211, 59);
+            this.dgvDangKyGiaHan.MultiSelect = false;
+            this.dgvDangKyGiaHan.Name = "dgvDangKyGiaHan";
+            this.dgvDangKyGiaHan.ReadOnly = true;
+            this.dgvDangKyGiaHan.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvDangKyGiaHan.RowHeadersVisible = false;
+            this.dgvDangKyGiaHan.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvDangKyGiaHan.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDangKyGiaHan.Size = new System.Drawing.Size(824, 159);
+            this.dgvDangKyGiaHan.TabIndex = 27;
+            this.dgvDangKyGiaHan.SelectionChanged += new System.EventHandler(this.dgvDangKyGiaHan_SelectionChanged);
             // 
-            // MaDK
+            // SoPDK
             // 
-            this.MaDK.DataPropertyName = "MADANGKY";
-            this.MaDK.HeaderText = "Mã đăng ký";
-            this.MaDK.Name = "MaDK";
-            this.MaDK.ReadOnly = true;
+            this.SoPDK.DataPropertyName = "SoPDK";
+            this.SoPDK.HeaderText = "Mã đăng ký";
+            this.SoPDK.Name = "SoPDK";
+            this.SoPDK.ReadOnly = true;
             // 
             // MaKH
             // 
@@ -574,12 +556,12 @@ namespace QuanLyDiaOc.PresentationLayers
             this.MaKH.Name = "MaKH";
             this.MaKH.ReadOnly = true;
             // 
-            // MaDiaOc
+            // MaDO
             // 
-            this.MaDiaOc.DataPropertyName = "MADIAOC";
-            this.MaDiaOc.HeaderText = "Mã địa ốc";
-            this.MaDiaOc.Name = "MaDiaOc";
-            this.MaDiaOc.ReadOnly = true;
+            this.MaDO.DataPropertyName = "MaDO";
+            this.MaDO.HeaderText = "Mã địa ốc";
+            this.MaDO.Name = "MaDO";
+            this.MaDO.ReadOnly = true;
             // 
             // NgayDangKy
             // 
@@ -597,7 +579,7 @@ namespace QuanLyDiaOc.PresentationLayers
             // 
             // SoLanGiaHan
             // 
-            this.SoLanGiaHan.DataPropertyName = "SO_LAN_GIA_HAN";
+            this.SoLanGiaHan.DataPropertyName = "SoLanGiaHan";
             this.SoLanGiaHan.HeaderText = "Số lần gia hạn";
             this.SoLanGiaHan.Name = "SoLanGiaHan";
             this.SoLanGiaHan.ReadOnly = true;
@@ -612,7 +594,7 @@ namespace QuanLyDiaOc.PresentationLayers
             this.btnThoat.TabIndex = 28;
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = true;
-  //          this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnGiaHan
             // 
@@ -624,7 +606,29 @@ namespace QuanLyDiaOc.PresentationLayers
             this.btnGiaHan.TabIndex = 29;
             this.btnGiaHan.Text = "Gia hạn";
             this.btnGiaHan.UseVisualStyleBackColor = true;
- //           this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
+            this.btnGiaHan.Click += new System.EventHandler(this.btnGiaHan_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Nội dung";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 145;
+            // 
+            // DonGia
+            // 
+            this.DonGia.DataPropertyName = "DonGia";
+            dataGridViewCellStyle1.NullValue = "#,### đ";
+            this.DonGia.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DonGia.HeaderText = "Đơn giá";
+            this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Thành tiền";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
             // FormRenewal
             // 
@@ -633,7 +637,7 @@ namespace QuanLyDiaOc.PresentationLayers
             this.ClientSize = new System.Drawing.Size(1246, 670);
             this.Controls.Add(this.btnGiaHan);
             this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.dataGridDangKy);
+            this.Controls.Add(this.dgvDangKyGiaHan);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -652,7 +656,7 @@ namespace QuanLyDiaOc.PresentationLayers
             this.groupBox1.PerformLayout();
             this.gbthongtinkhachhang.ResumeLayout(false);
             this.gbthongtinkhachhang.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridDangKy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDangKyGiaHan)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -679,7 +683,6 @@ namespace QuanLyDiaOc.PresentationLayers
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtHuongNha;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox cbLoaiDiaOc;
         private System.Windows.Forms.TextBox txtDTSD;
         private System.Windows.Forms.TextBox txtDTKV;
         private System.Windows.Forms.TextBox txtDiaChiDO;
@@ -699,19 +702,20 @@ namespace QuanLyDiaOc.PresentationLayers
         private System.Windows.Forms.Label lDiachi;
         private System.Windows.Forms.Label lHoten;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridDangKy;
+        private System.Windows.Forms.DataGridView dgvDangKyGiaHan;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.TextBox txtTienGiaHan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnGiaHan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaKH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaDiaOc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayDangKy;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgàyKetThuc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLanGiaHan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn SoPDK;
+        private DataGridViewTextBoxColumn MaKH;
+        private DataGridViewTextBoxColumn MaDO;
+        private DataGridViewTextBoxColumn NgayDangKy;
+        private DataGridViewTextBoxColumn NgàyKetThuc;
+        private DataGridViewTextBoxColumn SoLanGiaHan;
+        private TextBox txtLoaiDiaOc;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn DonGia;
+        private DataGridViewTextBoxColumn Column3;
     }
 }

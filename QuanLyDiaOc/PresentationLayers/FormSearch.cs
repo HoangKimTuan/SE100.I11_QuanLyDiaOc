@@ -204,8 +204,7 @@ namespace QuanLyDiaOc.PresentationLayers
                                   }
                               }
                               catch { } */
-                    //if (dtDangKy.Rows[0]["SoPDK"].ToString() != null)
-                    //{
+                  
                     if (dtDangKy.Rows[0]["MaQCTrenBao"].ToString() != "")
                     {
                         grb_Bao.Enabled = true;
