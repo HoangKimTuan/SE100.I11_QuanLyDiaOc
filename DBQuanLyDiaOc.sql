@@ -381,6 +381,12 @@ AS
 	SELECT *  FROM GiayTo WHERE MaDO=@mado
 GO
 
+CREATE PROC sp_DangKy_LayDanhSachHetHan
+AS
+Select * FROM PhieuDangKy d 
+WHERE d.NGAYKETTHUC < getdate()
+GO
+
 CREATE PROC sp_DiaOc_TimKiem
 @mado varchar(10),
 @diachi nvarchar(200),

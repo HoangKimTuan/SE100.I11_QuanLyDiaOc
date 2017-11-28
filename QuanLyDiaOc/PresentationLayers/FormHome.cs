@@ -28,6 +28,7 @@ namespace QuanLyDiaOc.PresentationLayers
             }
             FormRegistration formRegistration = new FormRegistration();
             formRegistration.MdiParent = this;
+            formRegistration.StartPosition = FormStartPosition.Manual;
             formRegistration.Show();
         }
 
@@ -39,6 +40,7 @@ namespace QuanLyDiaOc.PresentationLayers
             }
             FormSetting formSetting = new FormSetting();
             formSetting.MdiParent = this;
+            formSetting.StartPosition = FormStartPosition.Manual;
             formSetting.Show();
         }
 
@@ -50,6 +52,7 @@ namespace QuanLyDiaOc.PresentationLayers
             }
             FormRenewal formRenewal = new FormRenewal();
             formRenewal.MdiParent = this;
+            formRenewal.StartPosition = FormStartPosition.Manual;
             formRenewal.Show();
 
         }
@@ -62,6 +65,7 @@ namespace QuanLyDiaOc.PresentationLayers
             }
             FormSearch formSearch = new FormSearch();
             formSearch.MdiParent = this;
+            formSearch.StartPosition = FormStartPosition.Manual;
             formSearch.Show();
         }
     }
