@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace QuanLyDiaOc.BusinesLogicLayers
 {
-    class AdvNewspaperBLL
+    class AdvNewpaperBLL
     {
-        AdvNewpaperDAL advNewspaperDAL = new AdvNewpaperDAL();
-        public string GetIdTypeAdvNewpaper(string maqc)
+        advNewspaperBLLDAL advNewspaperBLL = new advNewspaperBLLDAL();
+
+        public DataTable GetInfoNewspaper(string maqcbao)
         {
             try
             {
-                return advNewspaperDAL.GetIdTypeAdvNewpaper(maqc);
+                return advNewspaperBLL.GetInfoNewspaper(maqcbao);
             }
             catch
             {
@@ -23,17 +24,16 @@ namespace QuanLyDiaOc.BusinesLogicLayers
             }
         }
 
-        public DataTable GetInfoTypeAdv(string maqc)
+        public DataTable GetListNewspaper(string maqcbao)
         {
             try
             {
-                return advNewspaperDAL.GetInfoTypeAdv(maqc);
+                return advNewspaperBLL.GetListNewspaper(maqcbao);
             }
             catch
             {
                 return null;
             }
         }
-
     }
 }
