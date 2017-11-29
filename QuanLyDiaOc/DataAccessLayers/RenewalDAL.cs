@@ -29,5 +29,23 @@ namespace QuanLyDiaOc.DataAccessLayers
                 return null;
             }
         }
+
+        public bool DateRenewalEnd(string madk)
+        {
+            OpenConnect();
+            string store = "sp_DangKy_GiaHan";
+            sqlCommand = new SqlCommand(store, connect) { CommandType = CommandType.StoredProcedure };
+            sqlCommand.Parameters.Add(new SqlParameter("@SoPDK", madk));
+            if (sqlCommand.ExecuteNonQuery() >= 0)
+            {
+                CloseConnect();
+                return true;
+            }
+            else
+            {
+                CloseConnect();
+                return false;
+            }
+        }
     }
 }

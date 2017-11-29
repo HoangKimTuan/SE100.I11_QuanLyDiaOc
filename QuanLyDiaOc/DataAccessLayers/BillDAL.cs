@@ -8,19 +8,27 @@ using System.Threading.Tasks;
 
 namespace QuanLyDiaOc.DataAccessLayers
 {
-    class BillDAL :Connection
+    class BillDAL : Connection
     {
-        public DataTable GetBill(string madk)
+        public bool RenewalBill(string madk, double tienGiaHan)
         {
             OpenConnect();
-            DataTable data = new DataTable();
-            const string store = "sp_HoaDon_LayThongTin";
+            string store = "sp_HoaDon_GiaHan";
             sqlCommand = new SqlCommand(store, connect) { CommandType = CommandType.StoredProcedure };
-            sqlCommand.Parameters.Add(new SqlParameter("@madk", madk));
-            sqlAdapter = new SqlDataAdapter(sqlCommand);
-            sqlAdapter.Fill(data);
-            CloseConnect();
-            return data;
+            sqlCommand.Parameters.Add(new SqlParameter("@SoPDK", madk));
+            sqlCommand.Parameters.Add(new SqlParameter("@TONGCONG", tienGiaHan));
+            sqlCommand.Parameters.Add(new SqlParameter("@TINHTRANGTHANHTOAN", 1));
+            sqlCommand.Parameters.Add(new SqlParameter("@NGAYGIAHAN", 1));
+            if (sqlCommand.ExecuteNonQuery() >= 0)
+            {
+                CloseConnect();
+                return true;
+            }
+            else
+            {
+                CloseConnect();
+                return false;
+            }
         }
     }
 }

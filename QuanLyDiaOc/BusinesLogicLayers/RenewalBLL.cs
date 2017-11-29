@@ -22,5 +22,17 @@ namespace QuanLyDiaOc.BusinesLogicLayers
                 return null;
             }
         }
+
+        public void DateRenewalEnd(string madk)
+        {
+            try
+            {
+                renewalDAL.DateRenewalEnd(madk);
+            }
+            catch
+            {
+
+            }
+        }
     }
 }

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="BusinesLogicLayers\AdvBoardBLL.cs" />
     <Compile Include="BusinesLogicLayers\AdvNewpaperBLL.cs" />
+    <Compile Include="BusinesLogicLayers\BillBLL.cs" />
     <Compile Include="BusinesLogicLayers\CustomerBLL.cs" />
     <Compile Include="BusinesLogicLayers\DocumentBLL.cs" />
     <Compile Include="BusinesLogicLayers\AdvFlyersBLL.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="BusinesLogicLayers\UserBLL.cs" />
     <Compile Include="BusinesLogicLayers\UserTypeBLL.cs" />
     <Compile Include="DataAccessLayers\AdvNewspaperDAL.cs" />
+    <Compile Include="DataAccessLayers\BillDAL.cs" />
     <Compile Include="DataAccessLayers\Connection.cs" />
     <Compile Include="DataAccessLayers\CustomerDAL.cs" />
     <Compile Include="DataAccessLayers\DocumentDAL.cs" />
