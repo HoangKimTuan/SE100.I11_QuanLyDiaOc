@@ -91,6 +91,7 @@
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnThongKe.UseVisualStyleBackColor = false;
+            this.btnThongKe.Click += new System.EventHandler(this.btnThongKe_Click);
             // 
             // btnTraCuu
             // 
@@ -180,6 +181,7 @@
             this.btnGiaTienQC.Text = "Giá tiền quảng cáo";
             this.btnGiaTienQC.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.btnGiaTienQC.UseVisualStyleBackColor = false;
+            this.btnGiaTienQC.Click += new System.EventHandler(this.btnGiaTienQC_Click);
             // 
             // btnDangKy
             // 
@@ -236,6 +238,7 @@
             this.tìmKiếmToolStripMenuItem.Name = "tìmKiếmToolStripMenuItem";
             this.tìmKiếmToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.tìmKiếmToolStripMenuItem.Text = "Tìm kiếm";
+            this.tìmKiếmToolStripMenuItem.Click += new System.EventHandler(this.tìmKiếmToolStripMenuItem_Click);
             // 
             // thốngKêToolStripMenuItem
             // 

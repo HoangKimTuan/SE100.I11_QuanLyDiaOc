@@ -67,5 +67,34 @@ namespace QuanLyDiaOc.PresentationLayers
             formSearch.StartPosition = FormStartPosition.Manual;
             formSearch.Show();
         }
+
+        private void btnThongKe_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            FormReport formReport = new FormReport();
+            formReport.MdiParent = this;
+            formReport.StartPosition = FormStartPosition.Manual;
+            formReport.Show();
+        }
+
+        private void tìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGiaTienQC_Click(object sender, EventArgs e)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                frm.Close();
+            }
+            FormPrice formPrice = new FormPrice();
+            formPrice.MdiParent = this;
+            formPrice.StartPosition = FormStartPosition.Manual;
+            formPrice.Show();
+        }
     }
 }

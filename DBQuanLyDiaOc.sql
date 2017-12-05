@@ -81,6 +81,30 @@ create table QC_ToBuom
 	ThanhTien Money,
 )
 
+create table Gia_QC_ToBuom
+(
+	MaGiaQCToBuom int identity(1,1) primary key not null,
+	SoLuong Int,
+	DonGia money,
+)
+
+INSERT INTO Gia_QC_ToBuom VALUES(10, 100000)
+INSERT INTO Gia_QC_ToBuom VALUES(50, 500000)
+INSERT INTO Gia_QC_ToBuom VALUES(100, 900000)
+INSERT INTO Gia_QC_ToBuom VALUES(200, 170000)
+
+CREATE PROC sp_GiaQCToBuom_LayDanhSach
+AS
+	SELECT * FROM Gia_QC_ToBuom
+GO
+
+
+CREATE PROC sp_GiaQCToBuom_Sua
+@ma varchar(10),
+@gia money
+AS
+	UPDATE Gia_QC_ToBuom SET DonGia=@gia WHERE MaGiaQCToBuom=@ma
+GO
 
 Create table QC_TrenBang
 (
@@ -92,6 +116,76 @@ Create table QC_TrenBang
 	ThanhTien money,
 	MaHinhAnh varchar(10),
 )
+
+create table Gia_QC_TrenBang
+(
+	MaGiaQCTrenBang int identity(1,1) primary key not null,
+	MaLoaiBang nchar(10) not null,
+	KichThuoc float,
+	HinhAnh Bit,
+	DonGia money,
+)
+
+alter table Gia_QC_TrenBang
+add constraint FK_DiaOc_LoaiBang
+foreign key (MaLoaiBang)
+references LoaiBang(MaLoaiBang)
+
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 0.5, 0, 1000000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 1, 0, 1500000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 2, 0, 3000000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 0.5, 0, 800000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 1, 0, 1000000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 2, 0, 1300000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 0.5, 1, 1300000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 1, 1, 1800000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG1', 2, 1, 4000000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 0.5, 1, 1200000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 1, 1, 1300000)
+INSERT INTO Gia_QC_TrenBang VALUES('BANG2', 2, 1, 1500000)
+
+CREATE PROC sp_GiaQCTrenBang_LayDanhSach
+AS
+	SELECT MaGiaQCTrenBang, TenLoaiBang, KichThuoc, HinhAnh, DonGia FROM Gia_QC_TrenBang, LoaiBang WHERE Gia_QC_TrenBang.MaLoaiBang = LoaiBang.MaLoaiBang
+GO
+
+CREATE PROC sp_GiaQCTrenBang_Sua
+@ma varchar(10),
+@gia money
+AS
+	UPDATE Gia_QC_TrenBang SET DonGia=@gia WHERE MaGiaQCTrenBang=@ma
+GO
+
+
+create table Gia_QC_TrenBao
+(
+	MaGiaQCTrenBao int identity(1,1) primary key not null,
+	ViTri varchar(100),
+	MauSac Bit,
+	HinhAnh Bit,
+	DonGia money,
+)
+
+INSERT INTO Gia_QC_TrenBao VALUES(N'Trên cùng', 0, 0, 1000000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên dưới', 0, 0, 2000000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên trái', 1, 0, 3000000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên phải', 0, 1, 1400000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Trên cùng', 0, 0, 3200000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên dưới', 0, 1, 1300000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên trái', 1, 0, 1400000)
+INSERT INTO Gia_QC_TrenBao VALUES(N'Bên phải', 0, 0, 1500000)
+
+CREATE PROC sp_GiaQCTrenBao_LayDanhSach
+AS
+	SELECT * FROM Gia_QC_TrenBao
+GO
+
+CREATE PROC sp_GiaQCTrenBao_Sua
+@ma varchar(10),
+@gia money
+AS
+	UPDATE Gia_QC_TrenBao SET DonGia=@gia WHERE MaGiaQCTrenBao=@ma
+GO
 
 
 create table HinhAnh
@@ -105,10 +199,11 @@ create table LoaiBang
 (
 	MaLoaiBang nchar(10) primary key not null,
 	TenLoaiBang nvarchar(50) not null,
-	MoTaLoaiBang nvarchar(100),
-	KichCo varchar(50),
+	MoTaLoaiBang nvarchar(100)
 )
 
+INSERT INTO LoaiBang VALUES('BANG1', N'Bảng chiếu điện', N'Bảng điện tử')
+INSERT INTO LoaiBang VALUES('BANG2', N'Bảng thường', N'Bảng in bình thường')
 
 create table QC_TrenBao
 (

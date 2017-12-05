@@ -33,11 +33,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.SqlServer.Smo, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.XEventEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Management.XEventEnum.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Smo.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,6 +74,9 @@
     <Compile Include="BusinesLogicLayers\DocumentBLL.cs" />
     <Compile Include="BusinesLogicLayers\AdvFlyersBLL.cs" />
     <Compile Include="BusinesLogicLayers\LoginBLL.cs" />
+    <Compile Include="BusinesLogicLayers\PriceAdvNewspaperBLL.cs" />
+    <Compile Include="BusinesLogicLayers\PriceAdvBoardBLL.cs" />
+    <Compile Include="BusinesLogicLayers\PriceAdvFlyerBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateBLL.cs" />
     <Compile Include="BusinesLogicLayers\RealEstateTypeBLL.cs" />
     <Compile Include="BusinesLogicLayers\RegistrationBLL.cs" />
@@ -70,6 +91,9 @@
     <Compile Include="DataAccessLayers\DocumentDAL.cs" />
     <Compile Include="DataAccessLayers\AdvFlyersDAL.cs" />
     <Compile Include="DataAccessLayers\LoginDAL.cs" />
+    <Compile Include="DataAccessLayers\PriceAdvNewspaperDAL.cs" />
+    <Compile Include="DataAccessLayers\PriceAdvBoardDAL.cs" />
+    <Compile Include="DataAccessLayers\PriceAdvFlyerDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateDAL.cs" />
     <Compile Include="DataAccessLayers\RealEstateTypeDAL.cs" />
     <Compile Include="DataAccessLayers\RegistrationDAL.cs" />
@@ -79,9 +103,21 @@
     <Compile Include="DataAccessLayers\UserDAL.cs" />
     <Compile Include="DataAccessLayers\UserTypeDAL.cs" />
     <Compile Include="DataTransferObject\CustomerDTO.cs" />
+    <Compile Include="DataTransferObject\PriceAdvNewspaperDTO.cs" />
+    <Compile Include="DataTransferObject\PriceAdvBoardDTO.cs" />
+    <Compile Include="DataTransferObject\PriceAdvFlyerDTO.cs" />
     <Compile Include="DataTransferObject\RealEstateDTO.cs" />
     <Compile Include="DataTransferObject\RegistrationDTO.cs" />
     <Compile Include="DataTransferObject\UserDTO.cs" />
+    <Compile Include="PresentationLayers\DataQuangCao.cs">
+      <DependentUpon>DataQuangCao.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PresentationLayers\DataQuangCao.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataQuangCao.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PresentationLayers\FormConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +135,18 @@
     </Compile>
     <Compile Include="PresentationLayers\FormLogin.Designer.cs">
       <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayers\FormPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayers\FormPrice.Designer.cs">
+      <DependentUpon>FormPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayers\FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayers\FormReport.Designer.cs">
+      <DependentUpon>FormReport.cs</DependentUpon>
     </Compile>
     <Compile Include="PresentationLayers\FormRegistration.cs">
       <SubType>Form</SubType>
@@ -135,6 +183,12 @@
     <EmbeddedResource Include="PresentationLayers\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayers\FormPrice.resx">
+      <DependentUpon>FormPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayers\FormReport.resx">
+      <DependentUpon>FormReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PresentationLayers\FormRegistration.resx">
       <DependentUpon>FormRegistration.cs</DependentUpon>
     </EmbeddedResource>
@@ -147,6 +201,7 @@
     <EmbeddedResource Include="PresentationLayers\FormSetting.resx">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayers\ReportTest.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -157,6 +212,17 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="PresentationLayers\DataQuangCao.xsc">
+      <DependentUpon>DataQuangCao.xsd</DependentUpon>
+    </None>
+    <None Include="PresentationLayers\DataQuangCao.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataQuangCao.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PresentationLayers\DataQuangCao.xss">
+      <DependentUpon>DataQuangCao.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
